@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@variants hover {
+/*Esto quedó deprecado en la V3*/
+/* @variants hover {
   .zoom {
     transform: scale(4);
   }
@@ -11,5 +12,10 @@
 @responsive {
   .rotate-45 {
     transform: rotate(45deg);
+  }
+} */
+@layer base {
+  html {
+    font-family: "Quicksand", sans-serif;
   }
 }
