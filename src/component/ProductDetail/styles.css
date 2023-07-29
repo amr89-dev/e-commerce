@@ -1,0 +1,20 @@
+.productDetail {
+  width: calc(100vw / 4);
+  height: calc(100vh - 4rem);
+}
+
+.scrollBar {
+  overflow: auto;
+}
+
+.scrollBar::-webkit-scrollbar {
+  width: 5px;
+}
+.scrollBar::-webkit-scrollbar-thumb {
+  background: lightgray;
+  border-radius: 50px;
+}
+
+.scrollBar::-webkit-scrollbar-button {
+  margin-left: 10px;
+}
