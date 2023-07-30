@@ -5,11 +5,11 @@ import { ShoppingCartContext } from "../../context/";
 const NavBar = () => {
   const [menuIsOpen, setMenuIsOpen] = useState(true);
   const context = useContext(ShoppingCartContext);
-  const { cartItems, detailIsOpen } = context;
+  const { cartItems, detailIsOpen, shoppingCartIsOpen } = context;
   const links = [
     { to: "/", name: "Todos" },
     { to: "/ropa-hombre", name: " Ropa Hombre" },
-    { to: "/roma-muer", name: "Ropa Mujer" },
+    { to: "/ropa-muer", name: "Ropa Mujer" },
     { to: "/joyeria", name: "Joyeria" },
     { to: "/electronicos", name: "Electronicos" },
   ];
@@ -26,7 +26,7 @@ const NavBar = () => {
   return (
     <nav
       className={`flex flex-row items-center max-w-screen-lg mx-auto p-2 justify-between h-16 ${
-        detailIsOpen ? "blur pointer-events-none" : ""
+        detailIsOpen || shoppingCartIsOpen ? "blur pointer-events-none" : ""
       } `}
     >
       {!menuIsOpen ? (

@@ -1,6 +1,6 @@
 .shoppingCart {
-  width: calc(100vw / 4);
-  height: calc(100vh - 4rem);
+  width: calc(100vw / 3);
+  height: 100vh;
 }
 
 .scrollBar {

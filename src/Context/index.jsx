@@ -7,6 +7,7 @@ const ShoppingCartProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   const [detailIsOpen, setDetailIsOpen] = useState(false);
+  const [shoppingCartIsOpen, setShoppingCartIsOpen] = useState(false);
   const [productDetail, setProductDetail] = useState([]);
 
   const getProducts = async () => {
@@ -19,16 +20,37 @@ const ShoppingCartProvider = ({ children }) => {
       console.log(err);
     }
   };
-  const addItemToCart = (item) => {
-    const itemExist = cartItems.find((el) => el.id === item.id);
+  const addItemToCart = (id) => {
+    const newItem = products.find((el) => el.id === id);
+
+    const itemExist = cartItems.find((el) => el.id === newItem.id);
 
     itemExist
       ? setCartItems(
           cartItems.map((el) =>
-            el.id === item.id ? { ...el, quantity: el.quantity + 1 } : el
+            el.id === newItem.id ? { ...el, quantity: el.quantity + 1 } : el
           )
         )
-      : setCartItems([...cartItems, { ...item, quantity: 1 }]);
+      : setCartItems([...cartItems, { ...newItem, quantity: 1 }]);
+  };
+  const delItemFromCart = (id, all = false) => {
+    if (all) {
+      setCartItems(cartItems.filter((el) => el.id !== id));
+    }
+
+    const itemToDelete = cartItems.find((el) => el.id === id);
+
+    itemToDelete.quantity > 1
+      ? setCartItems(
+          cartItems.map((el) =>
+            el.id === id ? { ...el, quantity: el.quantity - 1 } : el
+          )
+        )
+      : setCartItems(cartItems.filter((el) => el.id !== id));
+  };
+
+  const handleOpenShoppingCart = () => {
+    setShoppingCartIsOpen(!shoppingCartIsOpen);
   };
 
   const handleOpenDetail = (flag) => {
@@ -57,8 +79,11 @@ const ShoppingCartProvider = ({ children }) => {
     setProducts,
     cartItems,
     addItemToCart,
+    delItemFromCart,
     detailIsOpen,
     handleOpenDetail,
+    shoppingCartIsOpen,
+    handleOpenShoppingCart,
     detailFilter,
     productDetail,
   };

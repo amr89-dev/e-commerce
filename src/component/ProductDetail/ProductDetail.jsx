@@ -38,7 +38,7 @@ const ProductDetail = () => {
           </svg>
         </button>
       </div>
-      <aside className="w-[90%] h-[85%] mx-auto flex flex-row gap-2 px-4 -mt-3">
+      <aside className="w-[90%] h-[85%] mx-auto flex flex-col items-center md:items-stretch sm:flex-row gap-2 px-4 -mt-3">
         <img
           src={productDetail[0]?.image}
           alt="img-detail"

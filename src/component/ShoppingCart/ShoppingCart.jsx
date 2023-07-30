@@ -1,18 +1,24 @@
 /* eslint-disable */
 import { useContext } from "react";
-import "./styles.css";
 import { ShoppingCartContext } from "../../context";
+import "./styles.css";
 const ShoppingCart = () => {
   const context = useContext(ShoppingCartContext);
 
-  const { cartItems } = context;
+  const {
+    cartItems,
+    shoppingCartIsOpen,
+    handleOpenShoppingCart,
+    addItemToCart,
+    delItemFromCart,
+  } = context;
 
   return (
     <div
       className={`${
-        true
+        !shoppingCartIsOpen
           ? "hidden"
-          : "shoppingCart fixed top-16 right-0 border border-black rounded-lg bg-white "
+          : "shoppingCart fixed top-0 overflow-auto scrollBar right-0 border border-black rounded-lg bg-white "
       }`}
     >
       <div className=" flex flex-row  justify-between py-4 px-5 ">
@@ -20,7 +26,7 @@ const ShoppingCart = () => {
         <button
           className="hover:text-gray-500"
           onClick={() => {
-            handleOpenDetail(true);
+            handleOpenShoppingCart();
           }}
         >
           <svg
@@ -47,7 +53,7 @@ const ShoppingCart = () => {
         >
           <button
             onClick={() => {
-              deleteItemfromAside(el.id);
+              delItemFromCart(el.id, true);
             }}
             className="absolute top-1 right-0"
           >
@@ -76,7 +82,23 @@ const ShoppingCart = () => {
             <p className="text-sm">
               {el.title.split(" ").slice(0, 3).join(" ")}
             </p>
-            <div>{el.quantity}</div>
+            <div className="flex flex-row">
+              <button
+                onClick={() => {
+                  delItemFromCart(el.id);
+                }}
+              >
+                -
+              </button>
+              <div>{el.quantity}</div>
+              <button
+                onClick={() => {
+                  addItemToCart(el.id);
+                }}
+              >
+                +
+              </button>
+            </div>
           </div>
           <div className="font-bold">${el.price}</div>
         </div>

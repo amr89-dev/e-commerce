@@ -5,12 +5,12 @@ import { ShoppingCartContext } from "../../context";
 
 const Home = () => {
   const context = useContext(ShoppingCartContext);
-  const { products, detailIsOpen } = context;
+  const { products, detailIsOpen, shoppingCartIsOpen } = context;
   return (
     <Layout>
       <div
         className={`flex flex-row flex-wrap gap-5 justify-center items-center ${
-          detailIsOpen ? "blur pointer-events-none" : ""
+          detailIsOpen || shoppingCartIsOpen ? "blur pointer-events-none" : ""
         } `}
       >
         {products.map((el) => (
