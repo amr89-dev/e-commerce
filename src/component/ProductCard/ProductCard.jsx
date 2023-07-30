@@ -1,13 +1,13 @@
 import { useContext } from "react";
-import { ShoppingCartContext } from "../../Context/index";
+import { ShoppingCartContext } from "../../context/index";
 /*eslint-disable */
 const ProductCard = ({ productData }) => {
   const context = useContext(ShoppingCartContext);
-  const { cartItems, setCartItems, handleOpenDetail, detailFilter } = context;
+  const { addItemToCart, handleOpenDetail, detailFilter } = context;
   const { title, price, image, category, id } = productData;
 
   const handleCart = (item) => {
-    setCartItems([...cartItems, item]);
+    addItemToCart(item);
   };
 
   return (
@@ -26,7 +26,7 @@ const ProductCard = ({ productData }) => {
           {category}
         </span>
         <button
-          className="absolute right-2 top-2 rounded-full w-6 h-6 flex justify-center items-center font-semibold bg-black/60 text-xs text-white"
+          className="absolute right-2 top-2 rounded-full w-6 h-6 flex justify-center items-center font-semibold bg-black/60 text-xs text-white hover:scale-125"
           onClick={() => {
             handleCart({ title, price, image, category, id });
           }}

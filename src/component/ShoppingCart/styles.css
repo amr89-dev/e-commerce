@@ -1,8 +1,6 @@
-.productDetail {
-  width: 70vw;
-  height: 65vh;
-  left: calc(30vw / 2);
-  top: calc(35vh / 2);
+.shoppingCart {
+  width: calc(100vw / 4);
+  height: calc(100vh - 4rem);
 }
 
 .scrollBar {

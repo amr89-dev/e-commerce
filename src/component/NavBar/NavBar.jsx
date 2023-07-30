@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { ShoppingCartContext } from "../../Context";
+import { ShoppingCartContext } from "../../context/";
 
 const NavBar = () => {
   const [menuIsOpen, setMenuIsOpen] = useState(true);
   const context = useContext(ShoppingCartContext);
-  const { cartItems } = context;
+  const { cartItems, detailIsOpen } = context;
   const links = [
     { to: "/", name: "Todos" },
     { to: "/ropa-hombre", name: " Ropa Hombre" },
@@ -24,7 +24,11 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="flex flex-row items-center max-w-screen-lg mx-auto p-2 justify-between h-16  ">
+    <nav
+      className={`flex flex-row items-center max-w-screen-lg mx-auto p-2 justify-between h-16 ${
+        detailIsOpen ? "blur pointer-events-none" : ""
+      } `}
+    >
       {!menuIsOpen ? (
         <button className="md:hidden" onClick={toggleMenu}>
           <svg
