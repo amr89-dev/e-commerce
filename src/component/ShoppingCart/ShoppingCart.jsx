@@ -18,7 +18,7 @@ const ShoppingCart = () => {
       className={`${
         !shoppingCartIsOpen
           ? "hidden"
-          : "shoppingCart fixed top-0 overflow-auto scrollBar right-0 border border-black rounded-lg bg-white "
+          : "shoppingCart fixed top-0 overflow-auto scrollBar right-0 border border-black rounded-lg bg-white flex flex-col"
       }`}
     >
       <div className=" flex flex-row  justify-between py-4 px-5 ">
@@ -103,6 +103,9 @@ const ShoppingCart = () => {
           <div className="font-bold">${el.price}</div>
         </div>
       ))}
+      <button className="w-[90%] h-auto mx-auto bg-gray-700 hover:bg-gray-500 text-white p-3 rounded-lg">
+        Ir a pagar
+      </button>
     </div>
   );
 };
