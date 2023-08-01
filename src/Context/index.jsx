@@ -9,6 +9,8 @@ const ShoppingCartProvider = ({ children }) => {
   const [detailIsOpen, setDetailIsOpen] = useState(false);
   const [shoppingCartIsOpen, setShoppingCartIsOpen] = useState(false);
   const [productDetail, setProductDetail] = useState([]);
+  const [orders, setOrders] = useState([]);
+  let productsToRender = useState(cartItems);
 
   const getProducts = async () => {
     try {
@@ -49,7 +51,14 @@ const ShoppingCartProvider = ({ children }) => {
       : setCartItems(cartItems.filter((el) => el.id !== id));
   };
 
-  const handleOpenShoppingCart = () => {
+  const handleOpenShoppingCart = (flag) => {
+    if (flag) {
+      setShoppingCartIsOpen(true);
+    }
+    if (!flag && flag !== undefined) {
+      setShoppingCartIsOpen(false);
+    }
+
     setShoppingCartIsOpen(!shoppingCartIsOpen);
   };
 
@@ -70,6 +79,14 @@ const ShoppingCartProvider = ({ children }) => {
     setProductDetail(data);
   };
 
+  const handleOrders = () => {
+    const newOrder = {
+      id: orders.length,
+      date: new Date().toLocaleDateString(),
+      products: [...cartItems],
+    };
+    setOrders([...orders, newOrder]);
+  };
   useEffect(() => {
     getProducts();
   }, []);
@@ -86,6 +103,10 @@ const ShoppingCartProvider = ({ children }) => {
     handleOpenShoppingCart,
     detailFilter,
     productDetail,
+    orders,
+    handleOrders,
+    productsToRender,
+    setCartItems,
   };
 
   return (
