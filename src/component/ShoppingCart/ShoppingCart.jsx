@@ -13,8 +13,9 @@ const ShoppingCart = () => {
     addItemToCart,
     delItemFromCart,
     handleOrders,
+    orders,
   } = context;
-
+  const index = orders.length;
   const productsToRender = cartItems;
   const totalPrice = cartItems.reduce((acc, el) => {
     const subtotal = el.quantity * el.price;
@@ -108,7 +109,7 @@ const ShoppingCart = () => {
                 </button>
               </div>
             </div>
-            <div className="font-bold">${el.price}</div>
+            <div className="font-bold">${el.price * el.quantity}</div>
           </div>
         ))}
       </div>
@@ -116,7 +117,7 @@ const ShoppingCart = () => {
         Total: {totalPrice.toFixed(2)}{" "}
       </p>
       <Link
-        to="/orders"
+        to={`/orders/${index}`}
         className="w-[90%] h-auto mx-auto bg-black hover:bg-black/90 text-white text-lg text-center p-3 rounded-lg my-4"
         onClick={() => {
           handleOpenShoppingCart(false);

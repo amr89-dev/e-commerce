@@ -10,6 +10,7 @@ const ShoppingCartProvider = ({ children }) => {
   const [shoppingCartIsOpen, setShoppingCartIsOpen] = useState(false);
   const [productDetail, setProductDetail] = useState([]);
   const [orders, setOrders] = useState([]);
+  const [filteredItems, setFilteredItems] = useState([]);
   let productsToRender = useState(cartItems);
 
   const getProducts = async () => {
@@ -84,6 +85,10 @@ const ShoppingCartProvider = ({ children }) => {
       id: orders.length,
       date: new Date().toLocaleDateString(),
       products: [...cartItems],
+      totalPrice: cartItems.reduce((acc, el) => {
+        const sub = el.quantity * el.price;
+        return sub + acc;
+      }, 0),
     };
     setOrders([...orders, newOrder]);
   };
@@ -107,6 +112,8 @@ const ShoppingCartProvider = ({ children }) => {
     handleOrders,
     productsToRender,
     setCartItems,
+    filteredItems,
+    setFilteredItems,
   };
 
   return (

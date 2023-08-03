@@ -9,7 +9,7 @@ const NavBar = () => {
   const links = [
     { to: "/", name: "Todos" },
     { to: "/ropa-hombre", name: " Ropa Hombre" },
-    { to: "/ropa-muer", name: "Ropa Mujer" },
+    { to: "/ropa-mujer", name: "Ropa Mujer" },
     { to: "/joyeria", name: "Joyeria" },
     { to: "/electronicos", name: "Electronicos" },
   ];
@@ -64,8 +64,9 @@ const NavBar = () => {
           </svg>
         </button>
       )}
-
-      <div className=" font-bold  text-2xl">Compri</div>
+      <Link to="/">
+        <div className=" font-bold  text-2xl">Compri</div>
+      </Link>
       <ul
         className={`${
           menuIsOpen ? "hidden" : "flex flex-col absolute top-16 left-0 w-full"

@@ -9,6 +9,7 @@ import NotFound from "./pages/NotFound/NotFound";
 import NavBar from "./component/NavBar/NavBar";
 import ProductDetail from "./component/ProductDetail/ProductDetail";
 import ShoppingCart from "./component/ShoppingCart/ShoppingCart";
+import OrderCard from "./component/OrderCard/OrderCard";
 
 function App() {
   const AppRouter = () => {
@@ -18,12 +19,32 @@ function App() {
         element: <Home />,
       },
       {
+        path: "/ropa-hombre",
+        element: <Home />,
+      },
+      {
+        path: "/ropa-mujer",
+        element: <Home />,
+      },
+      {
+        path: "/joyeria",
+        element: <Home />,
+      },
+      {
+        path: "/electronicos",
+        element: <Home />,
+      },
+      {
         path: "/account",
         element: <MyAccount />,
       },
       {
         path: "/orders",
         element: <MyOrders />,
+      },
+      {
+        path: "/orders/:id",
+        element: <OrderCard />,
       },
       {
         path: "/login",
