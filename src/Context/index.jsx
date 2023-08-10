@@ -11,6 +11,7 @@ const ShoppingCartProvider = ({ children }) => {
   const [productDetail, setProductDetail] = useState([]);
   const [orders, setOrders] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
+  const [inputSearch, serInputSeach] = useState("");
   let productsToRender = useState(cartItems);
 
   const getProducts = async () => {
@@ -51,7 +52,6 @@ const ShoppingCartProvider = ({ children }) => {
         )
       : setCartItems(cartItems.filter((el) => el.id !== id));
   };
-
   const handleOpenShoppingCart = (flag) => {
     if (flag) {
       setShoppingCartIsOpen(true);
@@ -62,7 +62,6 @@ const ShoppingCartProvider = ({ children }) => {
 
     setShoppingCartIsOpen(!shoppingCartIsOpen);
   };
-
   const handleOpenDetail = (flag) => {
     if (flag) {
       setDetailIsOpen(false);
@@ -79,7 +78,6 @@ const ShoppingCartProvider = ({ children }) => {
     const data = products.filter((el) => el.id === id);
     setProductDetail(data);
   };
-
   const handleOrders = () => {
     const newOrder = {
       id: orders.length,
@@ -91,6 +89,9 @@ const ShoppingCartProvider = ({ children }) => {
       }, 0),
     };
     setOrders([...orders, newOrder]);
+  };
+  const handleInputSearch = (e) => {
+    serInputSeach(e.target.value);
   };
   useEffect(() => {
     getProducts();
@@ -114,6 +115,8 @@ const ShoppingCartProvider = ({ children }) => {
     setCartItems,
     filteredItems,
     setFilteredItems,
+    inputSearch,
+    handleInputSearch,
   };
 
   return (

@@ -7,7 +7,7 @@ import SearchBar from "../../component/SearchBar/SearchBar";
 
 const Home = () => {
   const context = useContext(ShoppingCartContext);
-  const { products, detailIsOpen, shoppingCartIsOpen } = context;
+  const { products, detailIsOpen, shoppingCartIsOpen, inputSearch } = context;
   const location = useLocation();
 
   let ruta = location.pathname.replace("/", "");
@@ -22,8 +22,14 @@ const Home = () => {
     (el) => el.category === keySearch[ruta]
   );
 
-  const productsToRender =
-    productsByCategory.length <= 0 ? products : productsByCategory;
+  const productsBySearch =
+    productsByCategory.length <= 0
+      ? products.filter((el) =>
+          el.title.toLowerCase().includes(inputSearch.toLowerCase())
+        )
+      : productsByCategory.filter((el) =>
+          el.title.toLowerCase().includes(inputSearch.toLowerCase())
+        );
 
   return (
     <Layout>
@@ -33,7 +39,7 @@ const Home = () => {
           detailIsOpen || shoppingCartIsOpen ? "blur pointer-events-none" : ""
         } `}
       >
-        {productsToRender.map((el) => (
+        {productsBySearch.map((el) => (
           <ProductCard key={el.id} productData={el} />
         ))}
       </div>
