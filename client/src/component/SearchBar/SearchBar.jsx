@@ -4,12 +4,14 @@ import { ShoppingCartContext } from "../../context";
 
 const SearchBar = () => {
   const context = useContext(ShoppingCartContext);
-  const { handleInputSearch } = context;
+  const { handleInputSearch, detailIsOpen, shoppingCartIsOpen } = context;
   return (
     <Layout>
       <section className="w-full flex justify-center  ">
         <input
-          className=" border border-gray-700 w-1/2 rounded-lg p-1 focus:shadow-2xl focus:outline-offset-1"
+          className={`border border-gray-700 w-1/2 rounded-lg p-1 focus:shadow-2xl focus:outline-offset-1 ${
+            detailIsOpen || shoppingCartIsOpen ? "blur pointer-events-none" : ""
+          }`}
           type="search"
           placeholder="Buscar..."
           onChange={handleInputSearch}
