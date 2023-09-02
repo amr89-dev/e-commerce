@@ -7,11 +7,40 @@ productsRouter.get("/", (req, res) => {
   const products = service.find();
   res.status(200).json(products);
 });
-productsRouter.get("/:email", (req, res) => {
-  const { email } = req.params;
-  console.log(email);
-  const product = service.findOne(email);
-  res.status(200).json(product);
+
+productsRouter.post("/", (req, res, next) => {
+  try {
+    const data = req.body;
+    const newProduct = service.create(data);
+    res.status(200).json(newProduct);
+  } catch (err) {
+    next(err);
+  }
+});
+productsRouter.put("/:id", (req, res) => {
+  const { id } = req.params;
+  const data = req.body;
+  const productUpdated = service.update(id, data);
+  res.status(200).json({
+    message: "Producto actualizado correctamente",
+    product: productUpdated,
+  });
+});
+productsRouter.get("/:id", (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const product = service.findOne(id);
+    res.status(200).json(product);
+  } catch (err) {
+    next(err);
+  }
+});
+productsRouter.delete("/:id", (req, res) => {
+  const { id } = req.params;
+  const product = service.delete(id);
+  res.status(200).json({
+    message: "Producto eliminado correctamente",
+  });
 });
 
 module.exports = productsRouter;
