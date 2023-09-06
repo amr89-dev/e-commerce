@@ -1,5 +1,6 @@
 const express = require("express");
 const routerApi = require("./routes");
+const cors = require("cors");
 const {
   errorLog,
   errorHandler,
@@ -8,6 +9,18 @@ const {
 
 const server = express();
 server.use(express.json());
+const ACCEPTED_ORIGINS = ["http://localhost:3001"];
+const options = {
+  origin: (origin, callback) => {
+    if (ACCEPTED_ORIGINS.includes(origin) || !origin) {
+      return callback(null, true);
+    } else {
+      return callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
+server.use(cors(options));
+
 routerApi(server);
 
 server.use(errorLog);
