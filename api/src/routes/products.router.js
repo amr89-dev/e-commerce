@@ -9,8 +9,8 @@ const {
 const productsRouter = express.Router();
 const service = new ProductService();
 
-productsRouter.get("/", (req, res) => {
-  const products = service.find();
+productsRouter.get("/", async (req, res) => {
+  const products = await service.find();
   res.status(200).json(products);
 });
 
