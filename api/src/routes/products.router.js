@@ -9,9 +9,13 @@ const {
 const productsRouter = express.Router();
 const service = new ProductService();
 
-productsRouter.get("/", (req, res) => {
-  const products = service.find();
-  res.status(200).json(products);
+productsRouter.get("/", (req, res, next) => {
+  try {
+    const products = service.find();
+    res.status(200).json(products);
+  } catch (err) {
+    next(err);
+  }
 });
 
 productsRouter.post(
@@ -27,6 +31,7 @@ productsRouter.post(
     }
   }
 );
+
 productsRouter.put(
   "/:id",
   validatorHandler(getProductSchema, "params"),
@@ -62,6 +67,7 @@ productsRouter.delete(
     const product = service.delete(id);
     res.status(200).json({
       message: "Producto eliminado correctamente",
+      product,
     });
   }
 );

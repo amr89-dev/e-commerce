@@ -4,9 +4,8 @@ const { sequelize } = require("../db");
 const Product = sequelize.define("product", {
   id: {
     allowNull: false,
-    autoIncrement: true,
     primaryKey: true,
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
   },
   name: {
     allowNull: false,
@@ -20,7 +19,7 @@ const Product = sequelize.define("product", {
     type: DataTypes.INTEGER,
   },
   images: {
-    type: DataTypes.ARRAY,
+    type: DataTypes.ARRAY(DataTypes.STRING),
   },
 });
 
