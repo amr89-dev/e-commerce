@@ -1,32 +1,37 @@
-const boom = require('@hapi/boom');
+const boom = require("@hapi/boom");
+const Category = require("../db/models/category.model");
 
 class CategoryService {
-
-  constructor(){
-  }
+  constructor() {}
   async create(data) {
-    return data;
+    const category = await Category.create(data);
+    return category;
   }
 
   async find() {
-    return [];
+    const categories = await Category.findAll();
+    return categories;
   }
 
   async findOne(id) {
-    return { id };
+    const category = Category.findByPk(id);
+    if (!category) {
+      throw boom.notFound("Category not found");
+    }
+    return category;
   }
 
   async update(id, changes) {
-    return {
-      id,
-      changes,
-    };
+    const category = await this.findOne(id);
+    const rta = await category.update(changes);
+    return rta;
   }
 
   async delete(id) {
-    return { id };
+    const category = await this.findOne(id);
+    const rta = await category.destroy();
+    return rta;
   }
-
 }
 
 module.exports = CategoryService;

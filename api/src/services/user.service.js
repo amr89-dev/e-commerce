@@ -28,14 +28,15 @@ class UserService {
   }
 
   async update(id, changes) {
-    return {
-      id,
-      changes,
-    };
+    const user = await this.findOne(id);
+    const rta = await user.update(changes);
+    return rta;
   }
 
   async delete(id) {
-    return { id };
+    const user = await this.findOne(id);
+    const rta = await user.destroy();
+    return rta;
   }
 }
 
