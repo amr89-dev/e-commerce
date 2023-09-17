@@ -9,9 +9,9 @@ const {
 const productsRouter = express.Router();
 const service = new ProductService();
 
-productsRouter.get("/", (req, res, next) => {
+productsRouter.get("/", async (req, res, next) => {
   try {
-    const products = service.find();
+    const products = await service.find();
     res.status(200).json(products);
   } catch (err) {
     next(err);
@@ -21,10 +21,10 @@ productsRouter.get("/", (req, res, next) => {
 productsRouter.post(
   "/",
   validatorHandler(createProductSchema, "body"),
-  (req, res, next) => {
+  async (req, res, next) => {
     try {
       const data = req.body;
-      const newProduct = service.create(data);
+      const newProduct = await service.create(data);
       res.status(200).json(newProduct);
     } catch (err) {
       next(err);

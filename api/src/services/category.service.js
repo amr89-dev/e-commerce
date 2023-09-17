@@ -14,7 +14,9 @@ class CategoryService {
   }
 
   async findOne(id) {
-    const category = Category.findByPk(id);
+    const category = Category.findByPk(id, {
+      include: ["products"],
+    });
     if (!category) {
       throw boom.notFound("Category not found");
     }

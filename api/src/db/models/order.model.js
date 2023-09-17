@@ -1,26 +1,24 @@
 const { DataTypes, Sequelize } = require("sequelize");
 const { sequelize } = require("../db");
-const User = require("./user.model");
+const Customer = require("./customer.model");
 
-const Customer = sequelize.define("customer", {
+const Order = sequelize.define("order", {
   id: {
     allowNull: false,
     primaryKey: true,
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV4,
   },
-  firstName: {
+  status: {
+    type: DataTypes.ENUM(
+      "pending",
+      "processing",
+      "shipped",
+      "delivered",
+      "canceled"
+    ),
     allowNull: false,
-    type: DataTypes.STRING,
-  },
-  lastName: {
-    allowNull: false,
-    type: DataTypes.STRING,
-    field: "last_name",
-  },
-  phone: {
-    allowNull: true,
-    type: DataTypes.STRING,
+    defaultValue: "pending",
   },
   createdAt: {
     allowNull: false,
@@ -30,20 +28,20 @@ const Customer = sequelize.define("customer", {
   },
 });
 
-Customer.belongsTo(User, {
+Order.belongsTo(Customer, {
   foreignKey: {
-    field: "user_id",
+    field: "customer_id",
     allowNull: false,
     unique: true,
   },
   onDelete: "SET NULL",
   onUpdate: "CASCADE",
-  as: "user",
-});
-
-User.hasOne(Customer, {
   as: "customer",
-  foreignKey: "userId",
 });
 
-module.exports = Customer;
+Customer.hasMany(Order, {
+  as: "orders",
+  foreignKey: "customerId",
+});
+
+module.exports = Order;

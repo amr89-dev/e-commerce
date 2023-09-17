@@ -7,7 +7,6 @@ class UserService {
 
   async create(data) {
     const newUser = {
-      id: crypto.randomUUID(),
       ...data,
     };
     await User.create(newUser);
@@ -15,7 +14,9 @@ class UserService {
   }
 
   async find() {
-    const users = User.findAll();
+    const users = User.findAll({
+      include: ["customer"],
+    });
     return users;
   }
 

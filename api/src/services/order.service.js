@@ -1,19 +1,30 @@
-const boom = require('@hapi/boom');
+const boom = require("@hapi/boom");
+const Order = require("../db/models/order.model");
+const Customer = require("../db/models/customer.model");
 
 class OrderService {
-
-  constructor(){
-  }
+  constructor() {}
   async create(data) {
-    return data;
+    const newOrder = await Order.create(data);
+    return newOrder;
   }
 
   async find() {
-    return [];
+    const orders = await Order.findAll();
+    return orders;
   }
 
   async findOne(id) {
-    return { id };
+    const order = await Order.findByPk(id, {
+      include: [
+        {
+          association: "customer",
+          include: ["user"],
+        },
+      ],
+    });
+
+    return order;
   }
 
   async update(id, changes) {
@@ -26,7 +37,6 @@ class OrderService {
   async delete(id) {
     return { id };
   }
-
 }
 
 module.exports = OrderService;

@@ -1,12 +1,18 @@
 const Joi = require("joi");
 
 const id = Joi.string().uuid();
-const date = Joi.date();
-const totalAmount = Joi.number();
+const customerId = Joi.string().uuid();
+const status = Joi.valid(
+  "pending",
+  "processing",
+  "shipped",
+  "delivered",
+  "canceled"
+);
 
 const createOrderSchema = Joi.object({
-  date: date.required(),
-  total: totalAmount,
+  customerId: customerId.required(),
+  status,
 });
 const updateOrderSchema = Joi.object({
   id: id.required(),

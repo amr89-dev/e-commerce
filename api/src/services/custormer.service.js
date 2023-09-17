@@ -1,33 +1,40 @@
 const boom = require("@hapi/boom");
+const Customer = require("../db/models/customer.model");
+const { randomUUID } = require("crypto");
+const User = require("../db/models/user.model");
+const crypto = require("crypto");
 
 class CustomerService {
   constructor() {}
   async find() {
-    const rta = await models.Customer.findAll({ include: ["user"] });
+    const rta = await Customer.findAll({
+      include: ["user"],
+    });
     return rta;
   }
   async findOne(id) {
-    const user = await models.Customer.findByPk(id);
+    const user = await Customer.findByPk(id);
     if (!user) {
       throw boom.notFound("customer not found");
     }
     return user;
   }
   async create(data) {
-    const newCustomer = await models.Customer.create(data, {
+    const newCustomer = await Customer.create(data, {
       include: ["user"],
     });
     return newCustomer;
   }
   async update(id, changes) {
-    const model = await this.findOne(id);
-    const rta = await model.update(changes);
+    const customer = await this.findOne(id);
+    const rta = await customer.update(changes);
     return rta;
   }
   async delete(id) {
-    const model = await this.findOne(id);
-    await model.destroy();
+    const customer = await this.findOne(id);
+    await customer.destroy();
     return { rta: true };
   }
 }
+
 module.exports = CustomerService;

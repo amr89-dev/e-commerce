@@ -1,4 +1,3 @@
-const crypto = require("crypto");
 const boom = require("@hapi/boom");
 const Product = require("../db/models/product.model");
 
@@ -6,7 +5,9 @@ class ProductService {
   constructor() {}
 
   async find() {
-    const products = await Product.findAll();
+    const products = await Product.findAll({
+      include: ["categories"],
+    });
     return products;
   }
 
@@ -19,11 +20,7 @@ class ProductService {
   }
 
   async create(data) {
-    const newProduct = {
-      id: crypto.randomUUID(),
-      ...data,
-    };
-    await Product.create(newProduct);
+    const newProduct = await Product.create(data);
     return newProduct;
   }
   async update(id, data) {

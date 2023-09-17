@@ -1,11 +1,13 @@
 const { DataTypes, Sequelize } = require("sequelize");
 const { sequelize } = require("../db");
+const { Customer } = sequelize.models;
 
 const User = sequelize.define("user", {
   id: {
     allowNull: false,
     primaryKey: true,
-    type: DataTypes.STRING,
+    type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4,
   },
   email: {
     allowNull: false,

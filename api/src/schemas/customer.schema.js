@@ -5,12 +5,14 @@ const id = Joi.string().uuid();
 const firstName = Joi.string().min(3).max(30);
 const lastName = Joi.string();
 const phone = Joi.string();
+const userId = Joi.string().uuid();
+const user = createUserSchema;
 
 const createCustomerSchema = Joi.object({
   firstName: firstName.required(),
   lastName: lastName.required(),
   phone: phone.required(),
-  user: createUserSchema,
+  user: user.required(),
 });
 
 const updateCustomerSchema = Joi.object({
@@ -20,7 +22,7 @@ const updateCustomerSchema = Joi.object({
   user: updateUserSchema,
 });
 const getCustomerSchema = Joi.object({
-  id: id.required(),
+  id: userId.required(),
 });
 
 module.exports = {
