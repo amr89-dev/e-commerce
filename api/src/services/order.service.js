@@ -1,11 +1,14 @@
 const boom = require("@hapi/boom");
 const Order = require("../db/models/order.model");
-const Customer = require("../db/models/customer.model");
+const Item = require("../db/models/item.model");
 
 class OrderService {
   constructor() {}
+
   async create(data) {
     const newOrder = await Order.create(data);
+    const items = await Item.bulkCreate(data.items);
+    await newOrder.addItems(items);
     return newOrder;
   }
 
@@ -20,6 +23,9 @@ class OrderService {
         {
           association: "customer",
           include: ["user"],
+        },
+        {
+          model: Item,
         },
       ],
     });
