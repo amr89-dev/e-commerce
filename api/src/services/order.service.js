@@ -13,7 +13,9 @@ class OrderService {
   }
 
   async find() {
-    const orders = await Order.findAll();
+    const orders = await Order.findAll({
+      include: ["items"],
+    });
     return orders;
   }
 

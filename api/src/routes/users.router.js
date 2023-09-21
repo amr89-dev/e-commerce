@@ -26,8 +26,8 @@ router.get(
   async (req, res, next) => {
     try {
       const { id } = req.params;
-      const category = await service.findOne(id);
-      res.json(category);
+      const user = await service.findOne(id);
+      res.status(201).json(user);
     } catch (error) {
       next(error);
     }
@@ -56,8 +56,11 @@ router.patch(
     try {
       const { id } = req.params;
       const body = req.body;
-      const category = await service.update(id, body);
-      res.json(category);
+      const user = await service.update(id, body);
+      res.status(201).json({
+        user,
+        message: "El usuario ha sido actualizado correctamente",
+      });
     } catch (error) {
       next(error);
     }
@@ -70,9 +73,8 @@ router.delete(
   async (req, res, next) => {
     try {
       const { id } = req.params;
-      const rta = await service.delete(id);
+      await service.delete(id);
       res.status(201).json({
-        rta,
         message: "El usuario ha sido eliminado correctamente",
       });
     } catch (error) {

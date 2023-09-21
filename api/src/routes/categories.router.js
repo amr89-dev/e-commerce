@@ -57,7 +57,10 @@ router.patch(
       const { id } = req.params;
       const body = req.body;
       const category = await service.update(id, body);
-      res.status(201).json(category);
+      res.status(201).json({
+        category,
+        message: "La categoria ha sido actualizada correctamente",
+      });
     } catch (error) {
       next(error);
     }
@@ -71,7 +74,9 @@ router.delete(
     try {
       const { id } = req.params;
       await service.delete(id);
-      res.status(201).json({ id });
+      res
+        .status(201)
+        .json({ message: "La categoria ha sido eliminada correctamente" });
     } catch (error) {
       next(error);
     }

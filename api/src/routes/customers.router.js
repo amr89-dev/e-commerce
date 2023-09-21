@@ -36,8 +36,8 @@ customerRouter.get(
   async (req, res, next) => {
     try {
       const { id } = req.params;
-      const rta = await service.findOne(id);
-      res.status(201).json(rta);
+      const customer = await service.findOne(id);
+      res.status(201).json(customer);
     } catch (err) {
       next(err);
     }
@@ -52,8 +52,11 @@ customerRouter.put(
     try {
       const { id } = req.params;
       const changes = req.body;
-      const rta = await service.update(id, changes);
-      res.status(201).json(rta);
+      const customer = await service.update(id, changes);
+      res.status(201).json({
+        customer,
+        message: "El cliente ha sido actualizado correctamente",
+      });
     } catch (err) {
       next(err);
     }
@@ -65,8 +68,10 @@ customerRouter.delete(
   async (req, res, next) => {
     try {
       const { id } = req.params;
-      const rta = await service.delete(id);
-      res.status(201).json(rta);
+      await service.delete(id);
+      res.status(201).json({
+        message: "El cliente ha sido eliminado correctamente",
+      });
     } catch (err) {
       next(err);
     }

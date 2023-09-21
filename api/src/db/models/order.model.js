@@ -34,7 +34,7 @@ Order.belongsTo(Customer, {
     allowNull: false,
     unique: true,
   },
-  onDelete: "SET NULL",
+  onDelete: "CASCADE",
   onUpdate: "CASCADE",
   as: "customer",
 });

@@ -29,7 +29,7 @@ Category.hasMany(Product, {
     field: "categoriesId",
   },
   as: "products",
-  onDelete: "SET NULL",
+  onDelete: "CASCADE",
   onUpdate: "CASCADE",
 });
 
