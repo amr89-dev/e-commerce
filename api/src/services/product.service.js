@@ -1,13 +1,17 @@
 const boom = require("@hapi/boom");
 const Product = require("../db/models/product.model");
 const { Op } = require("sequelize");
+const Category = require("../db/models/category.model");
 
 class ProductService {
   constructor() {}
 
   async find(query) {
     const options = {
-      include: ["categories"],
+      include: [
+        "categories",
+        { model: Category, as: "categories", attributes: ["name"] },
+      ],
       where: {},
     };
 
@@ -45,12 +49,12 @@ class ProductService {
     return newProduct;
   }
   async update(id, data) {
-    const product = await Product.findOne(id);
+    const product = await this.findOne(id);
     const rta = await product.update(data);
     return rta;
   }
   async delete(id) {
-    const product = await Product.findOne(id);
+    const product = await this.findOne(id);
     const rta = await product.destroy();
     return rta;
   }

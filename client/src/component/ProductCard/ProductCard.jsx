@@ -9,13 +9,13 @@ const ProductCard = ({ productData }) => {
     detailFilter,
     handleOpenShoppingCart,
   } = context;
-  const { title, price, image, category, id } = productData;
+  const { name, price, images, category, id } = productData;
 
   return (
     <div className=" w-56 h-60 m-12 ">
       <figure className="relative w-full h-full">
         <img
-          src={image}
+          src={images[0]}
           alt="headphones"
           className="relative rounded-lg w-full h-full object-contain"
           onClick={() => {
@@ -51,7 +51,7 @@ const ProductCard = ({ productData }) => {
       </figure>
       <div className="flex justify-between items-cneter">
         <span className="font-light m-2">
-          {title.split(" ").slice(0, 2).join(" ")}
+          {name.split(" ").slice(0, 2).join(" ")}
         </span>
         <span className="font-bold m-2">${price}</span>
       </div>

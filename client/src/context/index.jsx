@@ -16,7 +16,7 @@ const ShoppingCartProvider = ({ children }) => {
 
   const getProducts = async () => {
     try {
-      const res = await fetch("https://fakestoreapi.com/products/");
+      const res = await fetch("http://localhost:3001/api/v1/products");
       const json = await res.json();
       if (!res.ok) throw { status: res.status, statusText: res.statusText };
       setProducts(json);

@@ -11,12 +11,7 @@ const Home = () => {
   const location = useLocation();
 
   let ruta = location.pathname.replace("/", "");
-  const keySearch = {
-    "ropa-hombre": "men's clothing",
-    "ropa-mujer": "women's clothing",
-    electronicos: "electronics",
-    joyeria: "jewelery",
-  };
+  const keySearch = ["ropa-hombre", "ropa-mujer", "zapatos", "accesorios"];
 
   const productsByCategory = products.filter(
     (el) => el.category === keySearch[ruta]
@@ -25,10 +20,10 @@ const Home = () => {
   const productsBySearch =
     productsByCategory.length <= 0
       ? products.filter((el) =>
-          el.title.toLowerCase().includes(inputSearch.toLowerCase())
+          el.name.toLowerCase().includes(inputSearch.toLowerCase())
         )
       : productsByCategory.filter((el) =>
-          el.title.toLowerCase().includes(inputSearch.toLowerCase())
+          el.name.toLowerCase().includes(inputSearch.toLowerCase())
         );
 
   return (

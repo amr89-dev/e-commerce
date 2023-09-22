@@ -10,7 +10,7 @@ const {
 
 const server = express();
 server.use(express.json());
-const ACCEPTED_ORIGINS = ["http://localhost:3001"];
+const ACCEPTED_ORIGINS = ["http://localhost:3001", "http://localhost:5173"];
 const options = {
   origin: (origin, callback) => {
     if (ACCEPTED_ORIGINS.includes(origin) || !origin) {

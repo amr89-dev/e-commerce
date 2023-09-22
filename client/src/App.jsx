@@ -27,11 +27,11 @@ function App() {
         element: <Home />,
       },
       {
-        path: "/joyeria",
+        path: "/zapatos",
         element: <Home />,
       },
       {
-        path: "/electronicos",
+        path: "/accesorios",
         element: <Home />,
       },
       {

@@ -13,7 +13,6 @@ const service = new ProductService();
 
 productsRouter.get(
   "/",
-
   validatorHandler(queryProductSchema, "query"),
   async (req, res, next) => {
     try {
@@ -43,10 +42,10 @@ productsRouter.put(
   "/:id",
   validatorHandler(getProductSchema, "params"),
   validatorHandler(updateProductSchema, "body"),
-  (req, res) => {
+  async (req, res) => {
     const { id } = req.params;
     const data = req.body;
-    const productUpdated = service.update(id, data);
+    const productUpdated = await service.update(id, data);
     res.status(200).json({
       message: "Producto actualizado correctamente",
       product: productUpdated,
