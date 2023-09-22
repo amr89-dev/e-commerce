@@ -21,7 +21,7 @@ const options = {
   },
 };
 server.use(cors(options));
-
+require("./utils/auth/index");
 routerApi(server);
 
 server.use(errorLog);

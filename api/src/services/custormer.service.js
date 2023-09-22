@@ -1,8 +1,6 @@
 const boom = require("@hapi/boom");
 const Customer = require("../db/models/customer.model");
-const { randomUUID } = require("crypto");
-const User = require("../db/models/user.model");
-const crypto = require("crypto");
+const bcrypt = require("bcrypt");
 
 class CustomerService {
   constructor() {}
@@ -20,9 +18,18 @@ class CustomerService {
     return user;
   }
   async create(data) {
-    const newCustomer = await Customer.create(data, {
+    const hash = await bcrypt.hash(data.user.password, 10);
+    const newData = {
+      ...data,
+      user: {
+        ...data.user,
+        password: hash,
+      },
+    };
+    const newCustomer = await Customer.create(newData, {
       include: ["user"],
     });
+    delete newCustomer.user.datavalues.password;
     return newCustomer;
   }
   async update(id, changes) {

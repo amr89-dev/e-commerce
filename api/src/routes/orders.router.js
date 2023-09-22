@@ -5,6 +5,7 @@ const {
   createOrderSchema,
   updateOrderSchema,
 } = require("../schemas/order.schema");
+const passport = require("passport");
 
 const service = new OrderService();
 
@@ -25,6 +26,21 @@ ordersRouter.post(
       const data = req.body;
       const newOrder = await service.create(data);
       res.status(200).json(newOrder);
+    } catch (err) {
+      next(err);
+    }
+  }
+);
+
+ordersRouter.get(
+  "/profile",
+  passport.authenticate("jwt", { session: false }),
+
+  async (req, res, next) => {
+    try {
+      const user = req.user;
+      const orders = await service.findByUser(user.sub);
+      res.status(200).json(orders);
     } catch (err) {
       next(err);
     }

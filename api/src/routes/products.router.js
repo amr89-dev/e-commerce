@@ -7,11 +7,13 @@ const {
   createProductSchema,
   queryProductSchema,
 } = require("../schemas/product.schema");
+const { checkApiKey } = require("../middlewares/auth.handler");
 const productsRouter = express.Router();
 const service = new ProductService();
 
 productsRouter.get(
   "/",
+
   validatorHandler(queryProductSchema, "query"),
   async (req, res, next) => {
     try {
