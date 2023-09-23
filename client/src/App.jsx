@@ -27,7 +27,11 @@ function App() {
         element: <Home />,
       },
       {
-        path: "/zapatos",
+        path: "/zapatos-hombre",
+        element: <Home />,
+      },
+      {
+        path: "/zapatos-mujer",
         element: <Home />,
       },
       {

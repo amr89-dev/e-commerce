@@ -11,10 +11,9 @@ const Home = () => {
   const location = useLocation();
 
   let ruta = location.pathname.replace("/", "");
-  const keySearch = ["ropa-hombre", "ropa-mujer", "zapatos", "accesorios"];
 
   const productsByCategory = products.filter(
-    (el) => el.category === keySearch[ruta]
+    (el) => el.categories.name === ruta
   );
 
   const productsBySearch =
@@ -30,7 +29,7 @@ const Home = () => {
     <Layout>
       <SearchBar />
       <div
-        className={`flex flex-row flex-wrap gap-5 justify-center items-center ${
+        className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center items-center ${
           detailIsOpen || shoppingCartIsOpen ? "blur pointer-events-none" : ""
         } `}
       >

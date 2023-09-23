@@ -9,10 +9,20 @@ const ProductCard = ({ productData }) => {
     detailFilter,
     handleOpenShoppingCart,
   } = context;
-  const { name, price, images, category, id } = productData;
+  const { name, price, images, categories, id } = productData;
+  const findHyphen =
+    categories.name.indexOf("-") === -1
+      ? categories.name.length
+      : categories.name.indexOf("-");
+  const priceFormat = (price) =>
+    new Intl.NumberFormat("es-CO", {
+      style: "currency",
+      currency: "COP",
+      maximumSignificantDigits: 3,
+    }).format(price);
 
   return (
-    <div className=" w-56 h-60 m-12 ">
+    <div className=" m-12 ">
       <figure className="relative w-full h-full">
         <img
           src={images[0]}
@@ -24,7 +34,7 @@ const ProductCard = ({ productData }) => {
           }}
         />
         <span className="absolute bottom-0 left-0 m-2 bg-black/60 text-xs text-white rounded-lg px-2">
-          {category}
+          {categories.name.slice(0, findHyphen)}
         </span>
         <button
           className="absolute right-2 top-2 rounded-full w-6 h-6 flex justify-center items-center font-semibold bg-black/60 text-xs text-white hover:scale-125"
@@ -49,11 +59,9 @@ const ProductCard = ({ productData }) => {
           </svg>
         </button>
       </figure>
-      <div className="flex justify-between items-cneter">
-        <span className="font-light m-2">
-          {name.split(" ").slice(0, 2).join(" ")}
-        </span>
-        <span className="font-bold m-2">${price}</span>
+      <div className="flex justify-between items-center">
+        <span className="font-light m-2">{name}</span>
+        <span className="font-bold m-2">{priceFormat(price)}</span>
       </div>
     </div>
   );

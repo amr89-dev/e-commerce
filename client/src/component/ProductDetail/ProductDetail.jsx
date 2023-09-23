@@ -1,11 +1,13 @@
 import { useContext } from "react";
 import "./styles.css";
 import { ShoppingCartContext } from "../../context";
-import RatingStars from "../RatingStars/RatingStars";
+import Carrousel from "../Carrousel/Carrousel";
+//import RatingStars from "../RatingStars/RatingStars";
 
 const ProductDetail = () => {
   const context = useContext(ShoppingCartContext);
   const { detailIsOpen, handleOpenDetail, productDetail } = context;
+
   return (
     <div
       className={`${
@@ -38,22 +40,19 @@ const ProductDetail = () => {
           </svg>
         </button>
       </div>
-      <aside className="w-[90%] h-[85%] mx-auto flex flex-col items-center md:items-stretch sm:flex-row gap-2 px-4 -mt-3">
-        <img
-          src={productDetail[0]?.image}
-          alt="img-detail"
-          className="max-w-[50%] object-contain p-4"
-        />
-
+      <section className="w-[90%] h-[85%] grid grid-cols-2 grid-rows-1 mx-auto gap-2 p-4 pb-8">
+        <Carrousel>
+          {productDetail[0]?.images.map((el) => {
+            return <img key={el} src={el} alt="img-detail" className="" />;
+          })}
+        </Carrousel>
         <div className="flex flex-col items-center justify-center">
-          <h3 className="font-bold text-base ">
-            {productDetail[0]?.title.split(" ").slice(0, 3).join(" ")}
-          </h3>
+          <h3 className="font-bold text-base ">{productDetail[0]?.name}</h3>
           <p className=" text-sm">{productDetail[0]?.description}</p>
           <p className="font-bold text-xl">${productDetail[0]?.price}</p>
-          <RatingStars rating={productDetail[0]?.rating.rate} />
+          {/*  <RatingStars rating={productDetail[0]?.rating.rate} /> */}
         </div>
-      </aside>
+      </section>
     </div>
   );
 };

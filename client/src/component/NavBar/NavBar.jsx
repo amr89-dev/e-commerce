@@ -10,7 +10,8 @@ const NavBar = () => {
     { to: "/", name: "Todos" },
     { to: "/ropa-hombre", name: " Ropa Hombre" },
     { to: "/ropa-mujer", name: "Ropa Mujer" },
-    { to: "/zapatos", name: "Zapatos" },
+    { to: "/zapatos-hombre", name: "Zapatos Hombre" },
+    { to: "/zapatos-mujer", name: "Zapatos Mujer" },
     { to: "/accesorios", name: "Accesorios" },
   ];
 

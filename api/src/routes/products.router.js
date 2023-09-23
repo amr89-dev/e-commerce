@@ -55,10 +55,10 @@ productsRouter.put(
 productsRouter.get(
   "/:id",
   validatorHandler(getProductSchema, "params"),
-  (req, res, next) => {
+  async (req, res, next) => {
     try {
       const { id } = req.params;
-      const product = service.findOne(id);
+      const product = await service.findOne(id);
       res.status(200).json(product);
     } catch (err) {
       next(err);
@@ -68,9 +68,9 @@ productsRouter.get(
 productsRouter.delete(
   "/:id",
   validatorHandler(getProductSchema, "params"),
-  (req, res) => {
+  async (req, res) => {
     const { id } = req.params;
-    const product = service.delete(id);
+    const product = await service.delete(id);
     res.status(200).json({
       message: "Producto eliminado correctamente",
       product,

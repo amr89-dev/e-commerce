@@ -82,15 +82,13 @@ const ShoppingCart = () => {
               </svg>
             </button>
             <img
-              src={el.image}
+              src={el.images[0]}
               alt="item"
               className="w-10 h-10 object-contain mr-2"
             />
 
             <div>
-              <p className="text-sm">
-                {el.title.split(" ").slice(0, 3).join(" ")}
-              </p>
+              <p className="text-sm">{el.name}</p>
               <div className="flex flex-row">
                 <button
                   onClick={() => {
