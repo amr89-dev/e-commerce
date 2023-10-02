@@ -22,7 +22,7 @@ const ProductCard = ({ productData }) => {
     }).format(price);
 
   return (
-    <div className=" m-12 ">
+    <div className=" m-4">
       <figure className="relative w-full h-full">
         <img
           src={images[0]}

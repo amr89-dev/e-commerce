@@ -86,6 +86,9 @@ const NavBar = () => {
         ))}
       </ul>
       <ul className="flex flex-row gap-1">
+        <li>
+          <Link to="/login">Ingresar</Link>
+        </li>
         <li className="flex flex-row">
           <Link to="/cart">
             <svg
@@ -104,9 +107,6 @@ const NavBar = () => {
             </svg>
           </Link>
           <span className=" text-xs  -m-1">{cartItems.length}</span>
-        </li>
-        <li>
-          <Link to="/account">👤</Link>
         </li>
       </ul>
     </nav>

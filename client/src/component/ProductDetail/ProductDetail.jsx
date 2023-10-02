@@ -43,7 +43,14 @@ const ProductDetail = () => {
       <section className="w-[90%] h-[85%] grid grid-cols-2 grid-rows-1 mx-auto gap-2 p-4 pb-8">
         <Carrousel>
           {productDetail[0]?.images.map((el) => {
-            return <img key={el} src={el} alt="img-detail" className="" />;
+            return (
+              <img
+                key={el}
+                src={el}
+                alt="img-detail"
+                className=" object-cover"
+              />
+            );
           })}
         </Carrousel>
         <div className="flex flex-col items-center justify-center">

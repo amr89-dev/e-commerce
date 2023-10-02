@@ -2,6 +2,7 @@ import { createContext, useState, useEffect } from "react";
 
 export const ShoppingCartContext = createContext();
 
+const API_URL = "http://localhost:3001";
 //eslint-disable-next-line
 const ShoppingCartProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
@@ -16,9 +17,9 @@ const ShoppingCartProvider = ({ children }) => {
 
   const getProducts = async () => {
     try {
-      const res = await fetch("http://localhost:3001/api/v1/products");
-      const json = await res.json();
+      const res = await fetch(`${API_URL}/api/v1/products`);
       if (!res.ok) throw { status: res.status, statusText: res.statusText };
+      const json = await res.json();
       setProducts(json);
     } catch (err) {
       console.log(err);
@@ -93,6 +94,33 @@ const ShoppingCartProvider = ({ children }) => {
   const handleInputSearch = (e) => {
     serInputSeach(e.target.value);
   };
+  const createUser = async (data) => {
+    const customer = {
+      ...data,
+      user: {
+        email: data.email,
+        password: data.password,
+        role: "customer",
+      },
+    };
+    delete customer.password;
+    delete customer.email;
+
+    try {
+      const res = await fetch(`${API_URL}/api/v1/customers`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(customer),
+      });
+      if (!res.ok) throw { status: res.status, statusText: res.statusText };
+      const json = await res.json();
+      console.log(json);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   useEffect(() => {
     getProducts();
   }, []);
@@ -117,6 +145,7 @@ const ShoppingCartProvider = ({ children }) => {
     setFilteredItems,
     inputSearch,
     handleInputSearch,
+    createUser,
   };
 
   return (

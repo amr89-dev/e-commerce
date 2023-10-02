@@ -29,7 +29,7 @@ class CustomerService {
     const newCustomer = await Customer.create(newData, {
       include: ["user"],
     });
-    delete newCustomer.user.datavalues.password;
+    delete newCustomer.user.dataValues.password;
     return newCustomer;
   }
   async update(id, changes) {

@@ -12,10 +12,10 @@ const Carrousel = ({ children: slides }) => {
   };
 
   return (
-    <section className="overflow-hidden relative">
+    <section className="overflow-hidden relative max-w-[60%] mx-auto">
       <aside
-        className="flex flex-col transition-transform ease-out duration-500 h-full "
-        style={{ transform: `translateY(-${current * 100}%)` }}
+        className="flex flex-col transition-transform ease-out duration-500 w-full "
+        style={{ transform: `translateX(-${current * 100}%)` }}
       >
         {slides}
       </aside>
@@ -68,8 +68,8 @@ const Carrousel = ({ children: slides }) => {
           {slides?.map((_, i) => (
             <div
               className={`
-              transition-all w-3 h-3 bg-white rounded-full
-              ${current === i ? "p-2" : "bg-opacity-50"}
+              transition-all w-2 h-2 bg-black rounded-full
+              ${current === i ? "p-1" : "bg-opacity-50"}
             `}
             />
           ))}

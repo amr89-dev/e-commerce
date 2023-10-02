@@ -10,6 +10,7 @@ import NavBar from "./component/NavBar/NavBar";
 import ProductDetail from "./component/ProductDetail/ProductDetail";
 import ShoppingCart from "./component/ShoppingCart/ShoppingCart";
 import OrderCard from "./component/OrderCard/OrderCard";
+import SignUp from "./pages/SignUp/SignUp";
 
 function App() {
   const AppRouter = () => {
@@ -53,6 +54,10 @@ function App() {
       {
         path: "/login",
         element: <SignIn />,
+      },
+      {
+        path: "/sign-up",
+        element: <SignUp />,
       },
       {
         path: "/checkout",

@@ -16,7 +16,7 @@ router.post(
         sub: user.id,
       };
 
-      const token = jwt.sign(payload, JWT_SECRET);
+      const token = await jwt.sign(payload, JWT_SECRET);
       res.json({ user, token });
     } catch (error) {
       next(error);
