@@ -1,14 +1,12 @@
 import { useContext } from "react";
-import { ShoppingCartContext } from "../../context/index";
+import { ShoppingCartContext } from "../../contexts/shoppingCartContext";
+import { ProductContext } from "../../contexts/productContext";
 /*eslint-disable */
 const ProductCard = ({ productData }) => {
-  const context = useContext(ShoppingCartContext);
-  const {
-    addItemToCart,
-    handleOpenDetail,
-    detailFilter,
-    handleOpenShoppingCart,
-  } = context;
+  const cartContext = useContext(ShoppingCartContext);
+  const productContext = useContext(ProductContext);
+  const { handleOpenProductDetail, productDetailFilter } = productContext;
+  const { addItemToCart, handleOpenShoppingCart } = cartContext;
   const { name, price, images, categories, id } = productData;
   const findHyphen =
     categories.name.indexOf("-") === -1
@@ -29,8 +27,8 @@ const ProductCard = ({ productData }) => {
           alt="headphones"
           className="relative rounded-lg w-full h-full object-contain"
           onClick={() => {
-            handleOpenDetail();
-            detailFilter(id);
+            handleOpenProductDetail();
+            productDetailFilter(id);
           }}
         />
         <span className="absolute bottom-0 left-0 m-2 bg-black/60 text-xs text-white rounded-lg px-2">

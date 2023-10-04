@@ -1,12 +1,13 @@
 import { useContext } from "react";
 import "./styles.css";
-import { ShoppingCartContext } from "../../context";
 import Carrousel from "../Carrousel/Carrousel";
+import { ProductContext } from "../../contexts/productContext";
 //import RatingStars from "../RatingStars/RatingStars";
 
 const ProductDetail = () => {
-  const context = useContext(ShoppingCartContext);
-  const { detailIsOpen, handleOpenDetail, productDetail } = context;
+  const productContext = useContext(ProductContext);
+  const { detailIsOpen, productDetail, handleOpenProductDetail } =
+    productContext;
 
   return (
     <div
@@ -21,7 +22,7 @@ const ProductDetail = () => {
         <button
           className="hover:text-gray-500"
           onClick={() => {
-            handleOpenDetail(true);
+            handleOpenProductDetail(true);
           }}
         >
           <svg

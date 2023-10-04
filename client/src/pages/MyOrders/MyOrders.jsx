@@ -1,11 +1,14 @@
 import { useContext, useEffect } from "react";
 import Layout from "../../component/Layout/Layout";
-import { ShoppingCartContext } from "../../context";
 import { Link } from "react-router-dom";
+import { OrderContext } from "../../contexts/orderContex";
+import { ShoppingCartContext } from "../../contexts/shoppingCartContext";
 
 const MyOrders = () => {
-  const context = useContext(ShoppingCartContext);
-  const { orders, setCartItems } = context;
+  const orderContext = useContext(OrderContext);
+  const cartContext = useContext(ShoppingCartContext);
+  const { orders } = orderContext;
+  const { setCartItems } = cartContext;
   useEffect(() => {
     setCartItems([]);
   }, []);

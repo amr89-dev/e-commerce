@@ -1,13 +1,16 @@
 import { useContext } from "react";
 import Layout from "../../component/Layout/Layout";
 import ProductCard from "../../component/ProductCard/ProductCard";
-import { ShoppingCartContext } from "../../context";
+import { ShoppingCartContext } from "../../contexts/shoppingCartContext";
+import { ProductContext } from "../../contexts/productContext";
 import { useLocation } from "react-router-dom";
 import SearchBar from "../../component/SearchBar/SearchBar";
 
 const Home = () => {
-  const context = useContext(ShoppingCartContext);
-  const { products, detailIsOpen, shoppingCartIsOpen, inputSearch } = context;
+  const cartContext = useContext(ShoppingCartContext);
+  const productContext = useContext(ProductContext);
+  const { products, detailIsOpen, inputSearch } = productContext;
+  const { shoppingCartIsOpen } = cartContext;
   const location = useLocation();
 
   let ruta = location.pathname.replace("/", "");

@@ -1,11 +1,10 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Layout from "../../component/Layout/Layout";
-import { ShoppingCartContext } from "../../context";
+import { createUser } from "../../services/api";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({});
-  const context = useContext(ShoppingCartContext);
-  const { createUser } = context;
+
   const onChange = (e) => {
     setFormData({
       ...formData,
@@ -13,17 +12,19 @@ const SignUp = () => {
     });
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    createUser(formData);
+    await createUser(formData);
+
+    setFormData({});
   };
   return (
     <Layout>
-      <h2 className="text-2xl text-center my-4 font-semibold text-gray-700 ">
-        Inicie Sesión
+      <h2 className="text-2xl text-center mt-4 mb-2 font-semibold text-gray-700 ">
+        Registro de Usuario
       </h2>
       <form
-        className=" max-w-2xl mx-auto p-8  flex flex-col shadow-xl rounded-lg "
+        className=" max-w-lg mx-auto p-8  flex flex-col shadow-xl rounded-lg "
         onSubmit={onSubmit}
       >
         <label htmlFor="email">Correo electrónico:</label>

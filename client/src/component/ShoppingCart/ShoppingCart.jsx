@@ -1,20 +1,23 @@
 /* eslint-disable */
 import { useContext } from "react";
-import { ShoppingCartContext } from "../../context";
+import { OrderContext } from "../../contexts/orderContex";
+import { ShoppingCartContext } from "../../contexts/shoppingCartContext";
 import { Link } from "react-router-dom";
 import "./styles.css";
-const ShoppingCart = () => {
-  const context = useContext(ShoppingCartContext);
 
+const ShoppingCart = () => {
+  const orderContext = useContext(OrderContext);
+  const cartContext = useContext(ShoppingCartContext);
+
+  const { handleOrders, orders } = orderContext;
   const {
     cartItems,
     shoppingCartIsOpen,
     handleOpenShoppingCart,
     addItemToCart,
     delItemFromCart,
-    handleOrders,
-    orders,
-  } = context;
+  } = cartContext;
+
   const index = orders.length;
   const productsToRender = cartItems;
   const totalPrice = cartItems.reduce((acc, el) => {

@@ -1,10 +1,13 @@
 import { useContext } from "react";
 import Layout from "../Layout/Layout";
-import { ShoppingCartContext } from "../../context";
+import { ShoppingCartContext } from "../../contexts/shoppingCartContext";
+import { ProductContext } from "../../contexts/productContext";
 
 const SearchBar = () => {
-  const context = useContext(ShoppingCartContext);
-  const { handleInputSearch, detailIsOpen, shoppingCartIsOpen } = context;
+  const cartContext = useContext(ShoppingCartContext);
+  const productContext = useContext(ProductContext);
+  const { shoppingCartIsOpen } = cartContext;
+  const { handleInputSearch, detailIsOpen } = productContext;
   return (
     <Layout>
       <section className="w-full flex justify-center  ">

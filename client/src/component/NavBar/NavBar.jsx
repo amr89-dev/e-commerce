@@ -1,11 +1,14 @@
 import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { ShoppingCartContext } from "../../context/";
+import { ShoppingCartContext } from "../../contexts/shoppingCartContext";
+import { ProductContext } from "../../contexts/productContext";
 
 const NavBar = () => {
   const [menuIsOpen, setMenuIsOpen] = useState(true);
-  const context = useContext(ShoppingCartContext);
-  const { cartItems, detailIsOpen, shoppingCartIsOpen } = context;
+  const productContext = useContext(ProductContext);
+  const cartContext = useContext(ShoppingCartContext);
+  const { detailIsOpen } = productContext;
+  const { cartItems, shoppingCartIsOpen } = cartContext;
   const links = [
     { to: "/", name: "Todos" },
     { to: "/ropa-hombre", name: " Ropa Hombre" },

@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import Layout from "../Layout/Layout";
-import { ShoppingCartContext } from "../../context";
 import { Link, useParams } from "react-router-dom";
+import { OrderContext } from "../../contexts/orderContex";
 
 //eslint-disable-next-line
 const OrderCard = () => {
-  const context = useContext(ShoppingCartContext);
-  const { orders } = context;
+  const orderContext = useContext(OrderContext);
+  const { orders } = orderContext;
   const params = useParams();
   const productsOrder = orders[params.id].products;
   const totalPrice = productsOrder.reduce((acc, el) => {
@@ -48,9 +48,7 @@ const OrderCard = () => {
               />
 
               <div>
-                <p className="text-sm">
-                  {el.title.split(" ").slice(0, 3).join(" ")}
-                </p>
+                <p className="text-sm">{el.title}</p>
               </div>
               <div className="font-bold">${el.price}</div>
             </div>

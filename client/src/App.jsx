@@ -1,5 +1,5 @@
 import { useRoutes } from "react-router-dom";
-import ShoppinCartProvider from "./context/index";
+import MainContextProvider from "./contexts/index";
 import Home from "./pages/Home/Home";
 import MyAccount from "./pages/MyAccount/MyAccount";
 import MyOrders from "./pages/MyOrders/MyOrders";
@@ -73,12 +73,12 @@ function App() {
 
   return (
     <>
-      <ShoppinCartProvider>
+      <MainContextProvider>
         <NavBar />
         <AppRouter />
         <ProductDetail />
         <ShoppingCart />
-      </ShoppinCartProvider>
+      </MainContextProvider>
     </>
   );
 }
