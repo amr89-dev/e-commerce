@@ -1,3 +1,4 @@
+import ErrorLoadingProvider from "./errorLoadingContex";
 import OrderContextProvider from "./orderContex";
 import ProductContextProvider from "./productContext";
 import ShoppingCartContextProvider from "./shoppingCartContext";
@@ -7,7 +8,9 @@ const MainContextProvider = ({ children }) => {
   return (
     <ProductContextProvider>
       <ShoppingCartContextProvider>
-        <OrderContextProvider>{children}</OrderContextProvider>;
+        <OrderContextProvider>
+          <ErrorLoadingProvider>{children}</ErrorLoadingProvider>
+        </OrderContextProvider>
       </ShoppingCartContextProvider>
     </ProductContextProvider>
   );

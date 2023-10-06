@@ -29,7 +29,7 @@ const NavBar = () => {
 
   return (
     <nav
-      className={`flex flex-row items-center max-w-screen-lg mx-auto p-2 justify-between h-16 ${
+      className={`flex flex-row items-center max-w-screen-lg mx-auto p-2 justify-between h-16 relative ${
         detailIsOpen || shoppingCartIsOpen ? "blur pointer-events-none" : ""
       } `}
     >
@@ -68,28 +68,32 @@ const NavBar = () => {
           </svg>
         </button>
       )}
-      <Link to="/">
+      <Link to="/" className="">
         <div className=" font-bold  text-2xl">Compri</div>
       </Link>
       <ul
         className={`${
-          menuIsOpen ? "hidden" : "flex flex-col absolute top-16 left-0 w-full"
+          menuIsOpen
+            ? "hidden"
+            : "flex flex-col absolute top-16 left-0 w-full z-10 bg-white"
         }  md:visible md:flex md:static md:flex-row md:w-auto p-2  `}
       >
         {links.map((el, i) => (
           <NavLink
             key={i}
             to={el.to}
-            className={({ isActive }) =>
-              isActive ? navStyles.isActive : navStyles.pending
-            }
+            onClick={toggleMenu}
+            className={`${({ isActive }) =>
+              isActive
+                ? navStyles.isActive
+                : navStyles.pending} hover:bg-black hover:text-white px-2 rounded-lg`}
           >
             {el.name}
           </NavLink>
         ))}
       </ul>
       <ul className="flex flex-row gap-1">
-        <li>
+        <li className="px-2">
           <Link to="/login">Ingresar</Link>
         </li>
         <li className="flex flex-row">

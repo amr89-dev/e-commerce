@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Layout from "../../component/Layout/Layout";
 import { Link } from "react-router-dom";
+import { login } from "../../services/api";
 
 const SignIn = () => {
   const [formData, setFormData] = useState({});
@@ -14,7 +15,7 @@ const SignIn = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
+    login(formData);
     setFormData({});
   };
   return (

@@ -1,6 +1,6 @@
 const { DataTypes, Sequelize } = require("sequelize");
 const { sequelize } = require("../db");
-const { Customer } = sequelize.models;
+const Token = require("./token.model");
 
 const User = sequelize.define("user", {
   id: {
@@ -30,5 +30,14 @@ const User = sequelize.define("user", {
     defaultValue: Sequelize.NOW,
   },
 });
-
+User.hasOne(Token, { foreignKey: "id" });
+Token.belongsTo(User, {
+  foreignKey: {
+    field: "user_id",
+    allowNull: false,
+    unique: true,
+  },
+  onDelete: "CASCADE",
+  onUpdate: "CASCADE",
+});
 module.exports = User;
