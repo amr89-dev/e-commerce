@@ -1,10 +1,13 @@
 import { useState } from "react";
 import Layout from "../../component/Layout/Layout";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../services/api";
+import { useAuth } from "../../hooks/useAuth";
 
 const SignIn = () => {
   const [formData, setFormData] = useState({});
+  const { saveUser } = useAuth();
+  const navigate = useNavigate();
 
   const onChange = (e) => {
     setFormData({
@@ -13,10 +16,21 @@ const SignIn = () => {
     });
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    login(formData);
-    setFormData({});
+    try {
+      const res = await login(formData);
+      if (res.accessToken && res.refreshToken) {
+        saveUser(res);
+        setFormData({
+          email: "",
+          password: "",
+        });
+        navigate("/");
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <Layout>
@@ -29,6 +43,7 @@ const SignIn = () => {
       >
         <label htmlFor="email">Correo electrónico:</label>
         <input
+          value={formData.email}
           type="email"
           name="email"
           id="email"
@@ -40,6 +55,7 @@ const SignIn = () => {
 
         <label htmlFor="password">Contraseña:</label>
         <input
+          value={formData.password}
           type="password"
           name="password"
           id="password"

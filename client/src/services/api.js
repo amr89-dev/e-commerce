@@ -51,7 +51,42 @@ export const login = async (data) => {
     });
     if (!res.ok) throw { status: res.status, statusText: res.statusText };
     const json = await res.json();
-    localStorage.setItem("user", JSON.stringify(json));
+    return json;
+  } catch (err) {
+    console.log(err);
+    return { error: err };
+  }
+};
+export const removeToken = async (token) => {
+  try {
+    const res = await fetch(`${API_URL}/api/v1/auth/login`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (!res.ok) throw { status: res.status, statusText: res.statusText };
+    const json = await res.json();
+    return json;
+  } catch (err) {
+    console.log(err);
+    return { error: err };
+  }
+};
+
+export const reqNewAccessToken = async (refreshToken) => {
+  try {
+    const res = await fetch(`${API_URL}/api/v1/auth/token`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${refreshToken}`,
+      },
+    });
+    if (!res.ok) throw { status: res.status, statusText: res.statusText };
+    const json = await res.json();
+    return json;
   } catch (err) {
     console.log(err);
     return { error: err };

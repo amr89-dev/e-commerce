@@ -16,7 +16,13 @@ const SignUp = () => {
     e.preventDefault();
     await createUser(formData);
 
-    setFormData({});
+    setFormData({
+      email: "",
+      password: "",
+      firstName: "",
+      lastName: "",
+      phone: "",
+    });
   };
   return (
     <Layout>

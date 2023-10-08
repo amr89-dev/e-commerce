@@ -2,8 +2,12 @@ import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { ShoppingCartContext } from "../../contexts/shoppingCartContext";
 import { ProductContext } from "../../contexts/productContext";
+import { useAuth } from "../../hooks/useAuth";
+import AvatarDropdown from "../AvatarDropdown/AvatarDropdown";
 
 const NavBar = () => {
+  const { isAuthenticated } = useAuth();
+
   const [menuIsOpen, setMenuIsOpen] = useState(true);
   const productContext = useContext(ProductContext);
   const cartContext = useContext(ShoppingCartContext);
@@ -92,10 +96,16 @@ const NavBar = () => {
           </NavLink>
         ))}
       </ul>
-      <ul className="flex flex-row gap-1">
-        <li className="px-2">
-          <Link to="/login">Ingresar</Link>
-        </li>
+      <ul className="flex flex-row gap-1 justify-center items-center">
+        {!isAuthenticated ? (
+          <li className="px-2">
+            <Link to="/login">Ingresar</Link>
+          </li>
+        ) : (
+          <li className="px-2">
+            <AvatarDropdown />
+          </li>
+        )}
         <li className="flex flex-row">
           <Link to="/cart">
             <svg
@@ -104,7 +114,7 @@ const NavBar = () => {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6"
+              className="w-8 h-8"
             >
               <path
                 strokeLinecap="round"

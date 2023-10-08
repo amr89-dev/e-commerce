@@ -23,6 +23,13 @@ const ormErrorHandler = (err, req, res, next) => {
   }
 };
 const errorHandler = (err, req, res, next) => {
+  console.log(err);
+  if (err.name === "TokenExpiredError") {
+    return res.status(498).json({
+      message: err.message,
+      stack: err.stack,
+    });
+  }
   res.status(500).json({
     message: err.message,
     stack: err.stack,

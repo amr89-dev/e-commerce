@@ -30,14 +30,13 @@ const User = sequelize.define("user", {
     defaultValue: Sequelize.NOW,
   },
 });
-User.hasOne(Token, { foreignKey: "id" });
-Token.belongsTo(User, {
+
+User.hasOne(Token, {
   foreignKey: {
     field: "user_id",
-    allowNull: false,
-    unique: true,
   },
   onDelete: "CASCADE",
   onUpdate: "CASCADE",
 });
+
 module.exports = User;
