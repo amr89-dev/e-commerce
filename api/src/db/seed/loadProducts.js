@@ -33,7 +33,7 @@ const data = [
     ],
     description:
       "jeans skinny con diseño de cinco bolsillos, cintura con trabillas, cierre de cremallera y botón, confeccionados en tejido ligeramente elástico.",
-    categoyNames: "ropa-hombre",
+    categoryName: "ropa-hombre",
   },
   {
     name: "JEANS BAGGY",
@@ -50,7 +50,7 @@ const data = [
     ],
     description:
       "Jeans baggy fit con diseño de cinco bolsillos, cintura con trabillas, cierre de cremallera y botón, en tejido de 100% algodón.",
-    categoyNames: "ropa-hombre",
+    categoryName: "ropa-hombre",
   },
   {
     name: "CAMISETA MARRÓN PRINT STWD",
@@ -82,7 +82,7 @@ const data = [
     ],
     description:
       "Camiseta oversize de manga corta y cuello redondo con detalle de etiqueta y confeccionado en algodón.",
-    categoyNames: "ropa-hombre",
+    categoryName: "ropa-hombre",
   },
   {
     name: "CAMISETA GREEN DAY",
@@ -114,7 +114,7 @@ const data = [
     ],
     description:
       "Camisa de manga corta y cuello solapa con detalle de print de girasoles, cierre de botones y confeccionada en tejido de viscosa.",
-    categoyNames: "ropa-hombre",
+    categoryName: "ropa-hombre",
   },
   {
     name: "PANTALÓN CARGO SLIM",
@@ -131,7 +131,7 @@ const data = [
     ],
     description:
       "Pantalón cargo slim con cintura con trabillas, cierre de botón y cremallera y bolsillos en la pernera con tapeta.",
-    categoyNames: "ropa-hombre",
+    categoryName: "ropa-hombre",
   },
   {
     name: "PANTALÓN JOGGER BÁSICO",
@@ -165,7 +165,7 @@ const data = [
     ],
     description:
       "Bermuda vaquera de corte slim fit con detalle de rotos en la pernera, diseño de cinco bolsillos, cintura con trabillas y cierre de botón y cremallera.",
-    categoyNames: "ropa-hombre",
+    categoryName: "ropa-hombre",
   },
   {
     name: "CAZADORA BOMBER LIGERA",
@@ -197,7 +197,7 @@ const data = [
     ],
     description:
       "Sobrecamisa de antelina con bolsillos de solapa en pecho, cierre de botones, cuello clásico y disponible en varios colores.",
-    categoyNames: "ropa-hombre",
+    categoryName: "ropa-hombre",
   },
   {
     name: "CHAQUETA BOLSILLO CANGURO",
@@ -214,7 +214,7 @@ const data = [
     ],
     description:
       "Chaqueta con bolsillo tipo canguro, detalle de etiqueta tejida en frontal, con capucha, forro interior acolchado y cierre de cremallera en el pecho. Disponible en varios colores.",
-    categoyNames: "ropa-hombre",
+    categoryName: "ropa-hombre",
   },
   {
     name: "SUDADERA BÁSICA CUELLO REDONDO",
@@ -245,7 +245,7 @@ const data = [
     ],
     description:
       "Camisa de color naranja con estampado de palmeras, de manga corta, con cierre de botones y confeccionada en viscosa.",
-    categoyNames: "ropa-hombre",
+    categoryName: "ropa-hombre",
   },
   {
     name: "CAMISA MANGA CORTA SEERSUCKER",
@@ -276,7 +276,7 @@ const data = [
     ],
     description:
       "Minifalda estampada en tejido chifón, con cintura ancha y detalle de volantes.",
-    categoyNames: "ropa-mujer",
+    categoryName: "ropa-mujer",
   },
   {
     name: "MINIFALDA VAQUERA CARGO",
@@ -307,7 +307,7 @@ const data = [
     ],
     description:
       "Sobrecamisa de cuadros en tonos beis con bolsillos delanteros y de manga larga.",
-    categoyNames: "ropa-mujer",
+    categoryName: "ropa-mujer",
   },
   {
     name: "CAMISA CUADROS MANGA LARGA",
@@ -337,7 +337,7 @@ const data = [
     ],
     description:
       "Camisa cropped de manga corta, con cierre de botones y cuello clásico, confeccionada en 100% algodón.",
-    categoyNames: "ropa-mujer",
+    categoryName: "ropa-mujer",
   },
   {
     name: "CAMISA OVERSIZE RÚSTICA",
@@ -352,7 +352,7 @@ const data = [
     ],
     description:
       "Camisa oversize estilo rústico, con cuello clásico, cierre de botones, manga larga y confeccionada en tejido de 100% algodón.",
-    categoyNames: "ropa-mujer",
+    categoryName: "ropa-mujer",
   },
   {
     name: "VESTIDO CORTO TIRANTES CANALÉ",
@@ -382,7 +382,7 @@ const data = [
     ],
     description:
       "Mono largo con detalle de cut out lateral, escote en pico, tirante fino y confeccionado en tejido ligeramente elástico.",
-    categoyNames: "ropa-mujer",
+    categoryName: "ropa-mujer",
   },
   {
     name: "VESTIDO MIDI CANALÉ TIRANTES",
@@ -412,7 +412,7 @@ const data = [
     ],
     description:
       "Vestido midi efecto piel palabra de honor con silueta ajustada.",
-    categoyNames: "ropa-mujer",
+    categoryName: "ropa-mujer",
   },
   {
     name: "BAMBA RETRO CONTRASTE",
@@ -426,7 +426,7 @@ const data = [
     ],
     description:
       "Zapatillas deportivas tipo bamba, disponibles en varios colores. Detalles a contraste. Cierre mediante cordones.",
-    categoyNames: "zapatos-hombre",
+    categoryName: "zapatos-hombre",
   },
   {
     name: "BAMBA URBAN DETALLE",
@@ -455,7 +455,7 @@ const data = [
     ],
     description:
       "Zapatillas deportivas tipo running, disponibles en varios colores. En combinación de materiales. Tirador en la talonera. Cierre mediante cordones. Detalle de suela con relieves.",
-    categoyNames: "zapatos-hombre",
+    categoryName: "zapatos-hombre",
   },
   {
     name: "ZAPATILLAS DEPORTIVAS COMBINADAS",
@@ -483,7 +483,7 @@ const data = [
     ],
     description:
       "Botín plano estilo chelsea con tirador en la parte trasera y punta redondeada",
-    categoyNames: "zapatos-mujer",
+    categoryName: "zapatos-mujer",
   },
   {
     name: "BOTINES BIKER",
@@ -497,7 +497,7 @@ const data = [
     ],
     description:
       "Botín plano estilo biker, disponible en color negro. Detalle de hebillas en la caña. Suela tipo track. AIRFIT®. Plantilla técnica flexible de espuma compuesta de látex, diseñada para ofrecer un mayor confort.",
-    categoyNames: "zapatos-mujer",
+    categoryName: "zapatos-mujer",
   },
   {
     name: "BAMBA TIRAS",
@@ -527,7 +527,7 @@ const data = [
     ],
     description:
       "Zapatillas tipo bamba de estilo retro, disponible en varios colores. Detalles a contraste. Suela engomada. Cierre mediante cordones. STARFIT®. Plantilla técnica flexible de espuma compuesta de poliuretano, diseñada para ofrecer un mayor confort.",
-    categoyNames: "zapatos-mujer",
+    categoryName: "zapatos-mujer",
   },
   {
     name: "MOCHILA CITY",
@@ -556,7 +556,7 @@ const data = [
     ],
     description:
       "Bolso tipo riñonera STWD disponible en varios colores. Construcción soft con corte en nylon. Detalle de bolsillo delantero. Cierre mediante cremallera. Asa larga ajustable.",
-    categoyNames: "accesorios",
+    categoryName: "accesorios",
   },
   {
     name: "BANDOLERA ENGOMADA",
@@ -583,7 +583,7 @@ const data = [
     ],
     description:
       "Vestido largo de manga sisa con espalda descubierta, cuello redondo y confeccionado en poliamida.",
-    categoyNames: "ropa-mujer",
+    categoryName: "ropa-mujer",
   },
 ];
 
@@ -595,8 +595,11 @@ const loadProducts = async () => {
       for (producData in data) {
         product = data[producData];
         const categoriesId = await Category.findOne({
-          name: product.categoryName,
+          where: {
+            name: product.categoryName,
+          },
         });
+        console.log(product.categoryName, categoriesId.dataValues.id);
         const producDataWithCategoriesId = {
           ...product,
           categoriesId: categoriesId.dataValues.id,

@@ -22,6 +22,12 @@ const AuthContextProvider = ({ children }) => {
       return null;
     }
   };
+  const saveUser = (data) => {
+    setAccessToken(data.accessToken);
+    setUser(data.user);
+    localStorage.setItem("token", JSON.stringify(data.refreshToken));
+    setIsAuthenticated(true);
+  };
 
   const checkAuth = async () => {
     try {
@@ -43,12 +49,6 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
-  const saveUser = (data) => {
-    setAccessToken(data.accessToken);
-    setUser(data.user);
-    localStorage.setItem("token", JSON.stringify(data.refreshToken));
-    setIsAuthenticated(true);
-  };
   const logOut = async () => {
     try {
       const token = getAccessToken();
@@ -60,7 +60,7 @@ const AuthContextProvider = ({ children }) => {
       console.log(err);
     }
   };
-
+  console.log(user);
   const data = {
     isAuthenticated,
     user,

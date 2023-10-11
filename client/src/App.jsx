@@ -11,6 +11,7 @@ import ProductDetail from "./component/ProductDetail/ProductDetail";
 import ShoppingCart from "./component/ShoppingCart/ShoppingCart";
 import OrderCard from "./component/OrderCard/OrderCard";
 import SignUp from "./pages/SignUp/SignUp";
+import ProtectedRoutes from "./utils/ProtectedRoutes";
 
 function App() {
   const AppRouter = () => {
@@ -40,17 +41,28 @@ function App() {
         element: <Home />,
       },
       {
-        path: "/account",
-        element: <MyAccount />,
+        path: "/",
+        element: <ProtectedRoutes />,
+        children: [
+          {
+            path: "/account",
+            element: <MyAccount />,
+          },
+          {
+            path: "/orders",
+            element: <MyOrders />,
+          },
+          {
+            path: "/orders/:id",
+            element: <OrderCard />,
+          },
+          {
+            path: "/checkout",
+            element: <Checkout />,
+          },
+        ],
       },
-      {
-        path: "/orders",
-        element: <MyOrders />,
-      },
-      {
-        path: "/orders/:id",
-        element: <OrderCard />,
-      },
+
       {
         path: "/login",
         element: <SignIn />,
@@ -59,10 +71,7 @@ function App() {
         path: "/sign-up",
         element: <SignUp />,
       },
-      {
-        path: "/checkout",
-        element: <Checkout />,
-      },
+
       {
         path: "*",
         element: <NotFound />,

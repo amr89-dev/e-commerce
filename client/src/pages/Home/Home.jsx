@@ -15,10 +15,9 @@ const Home = () => {
 
   let ruta = location.pathname.replace("/", "");
 
-  const productsByCategory = products.filter(
-    (el) => el.categories.name === ruta
-  );
-
+  const productsByCategory = products.filter((el) => {
+    return el.categories.name === ruta;
+  });
   const productsBySearch =
     productsByCategory.length <= 0
       ? products.filter((el) =>
