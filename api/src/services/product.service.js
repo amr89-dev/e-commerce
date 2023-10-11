@@ -45,7 +45,13 @@ class ProductService {
   }
 
   async create(data) {
-    const newProduct = await Product.create(data);
+    const { categoryName } = data;
+    const categoriesId = await Category.findOne({ name: categoryName });
+    const dataWithCategoriesId = {
+      ...data,
+      categoriesId: categoriesId.dataValues.id,
+    };
+    const newProduct = await Product.create(dataWithCategoriesId);
     return newProduct;
   }
   async update(id, data) {

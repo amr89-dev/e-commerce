@@ -106,7 +106,7 @@ const NavBar = () => {
             <AvatarDropdown />
           </li>
         )}
-        <li className="flex flex-row">
+        <li className="flex flex-row relative">
           <Link to="/cart">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -123,7 +123,9 @@ const NavBar = () => {
               />
             </svg>
           </Link>
-          <span className=" text-xs  -m-1">{cartItems.length}</span>
+          <span className=" text-xs text-center text-white absolute -right-1 -top-1 bg-black rounded-full h-4 w-4">
+            {cartItems.length}
+          </span>
         </li>
       </ul>
     </nav>

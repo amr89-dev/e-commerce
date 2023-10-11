@@ -9,6 +9,7 @@ const price = Joi.number().integer().min(10);
 const description = Joi.string().min(10);
 const images = Joi.array().items(Joi.string().uri());
 const categoriesId = Joi.string().uuid();
+const categoryName = Joi.string();
 const limit = Joi.number();
 const offset = Joi.number();
 
@@ -20,7 +21,7 @@ const createProductSchema = Joi.object({
   price: price.required(),
   description: description.required(),
   images,
-  categoriesId,
+  categoryName,
 });
 
 const updateProductSchema = Joi.object({
