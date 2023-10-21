@@ -8,6 +8,7 @@ const ProductCard = ({ productData }) => {
   const { handleOpenProductDetail, productDetailFilter } = productContext;
   const { addItemToCart, handleOpenShoppingCart } = cartContext;
   const { name, price, images, categories, id } = productData;
+
   const findHyphen =
     categories.name.indexOf("-") === -1
       ? categories.name.length
@@ -20,7 +21,7 @@ const ProductCard = ({ productData }) => {
     }).format(price);
 
   return (
-    <div className=" m-4">
+    <div className="m-4">
       <figure className="relative w-full h-full">
         <img
           src={images[0]}
@@ -57,7 +58,7 @@ const ProductCard = ({ productData }) => {
           </svg>
         </button>
       </figure>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-start">
         <span className="font-light m-2">{name}</span>
         <span className="font-bold m-2">{priceFormat(price)}</span>
       </div>

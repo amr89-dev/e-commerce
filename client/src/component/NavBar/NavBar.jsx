@@ -9,10 +9,9 @@ const NavBar = () => {
   const { isAuthenticated } = useAuth();
 
   const [menuIsOpen, setMenuIsOpen] = useState(true);
-  const productContext = useContext(ProductContext);
-  const cartContext = useContext(ShoppingCartContext);
-  const { detailIsOpen } = productContext;
-  const { cartItems, shoppingCartIsOpen } = cartContext;
+  const { detailIsOpen } = useContext(ProductContext);
+  const { cartItems, shoppingCartIsOpen, handleOpenShoppingCart } =
+    useContext(ShoppingCartContext);
   const links = [
     { to: "/", name: "Todos" },
     { to: "/ropa-hombre", name: " Ropa Hombre" },
@@ -24,11 +23,6 @@ const NavBar = () => {
 
   const toggleMenu = () => {
     setMenuIsOpen(!menuIsOpen);
-  };
-
-  const navStyles = {
-    isActive: "mx-2 font-bold ",
-    pending: "mx-2",
   };
 
   return (
@@ -87,10 +81,13 @@ const NavBar = () => {
             key={i}
             to={el.to}
             onClick={toggleMenu}
-            className={`${({ isActive }) =>
-              isActive
-                ? navStyles.isActive
-                : navStyles.pending} hover:bg-black hover:text-white px-2 rounded-lg`}
+            className={({ isActive, isPending }) =>
+              isPending
+                ? "mx-2"
+                : isActive
+                ? "mx-2 font-bold"
+                : " hover:bg-black hover:text-white px-2 rounded-lg"
+            }
           >
             {el.name}
           </NavLink>
@@ -107,7 +104,7 @@ const NavBar = () => {
           </li>
         )}
         <li className="flex flex-row relative">
-          <Link to="/cart">
+          <button onClick={handleOpenShoppingCart}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -122,7 +119,7 @@ const NavBar = () => {
                 d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
               />
             </svg>
-          </Link>
+          </button>
           <span className=" text-xs text-center text-white absolute -right-1 -top-1 bg-black rounded-full h-4 w-4">
             {cartItems.length}
           </span>

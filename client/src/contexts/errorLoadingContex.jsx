@@ -5,11 +5,18 @@ export const ErrorLoadingContext = createContext();
 const ErrorLoadingProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const setLoadingState = (isLoading) => {
+    setLoading(isLoading);
+  };
+
+  const setErrorState = (errorMessage) => {
+    setError(errorMessage);
+  };
   const data = {
     error,
-    setError,
+    setErrorState,
     loading,
-    setLoading,
+    setLoadingState,
   };
   return (
     <ErrorLoadingContext.Provider value={data}>

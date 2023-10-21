@@ -7,15 +7,15 @@ import ShoppingCartContextProvider from "./shoppingCartContext";
 //eslint-disable-next-line
 const MainContextProvider = ({ children }) => {
   return (
-    <AuthContextProvider>
-      <ProductContextProvider>
-        <ShoppingCartContextProvider>
-          <OrderContextProvider>
-            <ErrorLoadingProvider>{children}</ErrorLoadingProvider>
-          </OrderContextProvider>
-        </ShoppingCartContextProvider>
-      </ProductContextProvider>
-    </AuthContextProvider>
+    <ErrorLoadingProvider>
+      <AuthContextProvider>
+        <ProductContextProvider>
+          <ShoppingCartContextProvider>
+            <OrderContextProvider>{children}</OrderContextProvider>
+          </ShoppingCartContextProvider>
+        </ProductContextProvider>
+      </AuthContextProvider>
+    </ErrorLoadingProvider>
   );
 };
 

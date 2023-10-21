@@ -5,6 +5,7 @@ import { ShoppingCartContext } from "../../contexts/shoppingCartContext";
 import { ProductContext } from "../../contexts/productContext";
 import { useLocation } from "react-router-dom";
 import SearchBar from "../../component/SearchBar/SearchBar";
+import { useErrorLoading } from "../../hooks/useErrorLoading";
 
 const Home = () => {
   const cartContext = useContext(ShoppingCartContext);
@@ -12,6 +13,7 @@ const Home = () => {
   const { products, detailIsOpen, inputSearch } = productContext;
   const { shoppingCartIsOpen } = cartContext;
   const location = useLocation();
+  const { error, loading } = useErrorLoading();
 
   let ruta = location.pathname.replace("/", "");
 
@@ -30,14 +32,27 @@ const Home = () => {
   return (
     <Layout>
       <SearchBar />
+
+      {error && (
+        <p className="mt-[100px]   text-3xl font-bold">{`Ops! Ocurrió un error al cargar los productos ...`}</p>
+      )}
       <div
         className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center items-start ${
           detailIsOpen || shoppingCartIsOpen ? "blur pointer-events-none" : ""
         } `}
       >
-        {productsBySearch.map((el) => (
-          <ProductCard key={el.id} productData={el} />
-        ))}
+        {loading
+          ? new Array(10).fill("").map((el, i) => {
+              return (
+                <div
+                  key={i}
+                  className="animate-pulse bg-gray-200 rounded-lg w-[224px] h-[336px] m-4"
+                ></div>
+              );
+            })
+          : productsBySearch.map((el) => (
+              <ProductCard key={el.id} productData={el} />
+            ))}
       </div>
     </Layout>
   );
