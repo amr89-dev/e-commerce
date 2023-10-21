@@ -10,7 +10,11 @@ const {
 
 const server = express();
 server.use(express.json());
-const ACCEPTED_ORIGINS = ["http://localhost:3001", "http://localhost:5173"];
+const ACCEPTED_ORIGINS = [
+  "http://localhost:3001",
+  "http://localhost:5173",
+  "http://localhost:5174",
+];
 
 const options = {
   origin: (origin, callback) => {

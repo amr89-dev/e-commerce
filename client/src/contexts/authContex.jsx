@@ -60,7 +60,7 @@ const AuthContextProvider = ({ children }) => {
       console.log(err);
     }
   };
-  console.log(user);
+
   const data = {
     isAuthenticated,
     user,

@@ -5,14 +5,15 @@ import { login } from "../../services/api";
 import { useAuth } from "../../hooks/useAuth";
 
 const SignIn = () => {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({ email: "", password: "" });
   const { saveUser } = useAuth();
   const navigate = useNavigate();
 
   const onChange = (e) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
   };
 
@@ -38,7 +39,7 @@ const SignIn = () => {
         Inicie Sesión
       </h2>
       <form
-        className=" max-w-lg mx-auto p-8  flex flex-col shadow-xl rounded-lg "
+        className=" w-96 max-w-lg mx-auto p-8  flex flex-col shadow-xl rounded-lg "
         onSubmit={onSubmit}
       >
         <label htmlFor="email">Correo electrónico:</label>
@@ -47,7 +48,7 @@ const SignIn = () => {
           type="email"
           name="email"
           id="email"
-          className="border border-black  rounded-md mb-2"
+          className="border border-black  rounded-md mb-2 p-1"
           onChange={(e) => {
             onChange(e);
           }}
@@ -59,7 +60,7 @@ const SignIn = () => {
           type="password"
           name="password"
           id="password"
-          className="border border-black  rounded-md mb-2"
+          className="border border-black  rounded-md mb-2 p-1 "
           onChange={(e) => {
             onChange(e);
           }}
@@ -67,7 +68,8 @@ const SignIn = () => {
 
         <button
           type="submit"
-          className="bg-gray-700 rounded-lg p-1 mt-2 text-white hover:bg-gray-500s"
+          disabled={formData.password === "" || formData.email === ""}
+          className="bg-gray-700 rounded-lg p-1 mt-2 text-white hover:bg-gray-500s disabled:bg-neutral-300 disabled:text-neutral-500 disabled:cursor-not-allowed"
         >
           Iniciar Sesión
         </button>
