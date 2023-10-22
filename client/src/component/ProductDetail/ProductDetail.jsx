@@ -2,19 +2,22 @@ import { useContext } from "react";
 import "./styles.css";
 import Carrousel from "../Carrousel/Carrousel";
 import { ProductContext } from "../../contexts/productContext";
+import { ShoppingCartContext } from "../../contexts/shoppingCartContext";
 //import RatingStars from "../RatingStars/RatingStars";
 
 const ProductDetail = () => {
   const productContext = useContext(ProductContext);
   const { detailIsOpen, productDetail, handleOpenProductDetail } =
     productContext;
+  const { addItemToCart, handleOpenShoppingCart } =
+    useContext(ShoppingCartContext);
 
   return (
     <div
       className={`${
         !detailIsOpen
           ? "hidden"
-          : "productDetail fixed  border border-black rounded-lg bg-white "
+          : "productDetail fixed w-[40%] border  border-black  rounded-lg bg-white top-1/2 left-1/2 translate-x-[-50%]  translate-y-[-50%] "
       }`}
     >
       <div className=" flex flex-row justify-between py-4 px-5 ">
@@ -49,16 +52,26 @@ const ProductDetail = () => {
                 key={el}
                 src={el}
                 alt="img-detail"
-                className=" object-cover"
+                className="object-fill rounded-lg  "
               />
             );
           })}
         </Carrousel>
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-around">
           <h3 className="font-bold text-base ">{productDetail[0]?.name}</h3>
           <p className=" text-sm">{productDetail[0]?.description}</p>
           <p className="font-bold text-xl">${productDetail[0]?.price}</p>
           {/*  <RatingStars rating={productDetail[0]?.rating.rate} /> */}
+          <button
+            className="  rounded-lg w-full p-2 flex justify-center items-center font-semibold bg-black/80 text-white hover:scale-90 hover:bg-black/60"
+            onClick={() => {
+              addItemToCart(productDetail[0]?.id);
+              handleOpenShoppingCart();
+              handleOpenProductDetail(true);
+            }}
+          >
+            Añadir al carrito
+          </button>
         </div>
       </section>
     </div>

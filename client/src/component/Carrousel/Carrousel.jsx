@@ -12,9 +12,9 @@ const Carrousel = ({ children: slides }) => {
   };
 
   return (
-    <section className="overflow-hidden relative max-w-[60%] mx-auto">
+    <section className="overflow-hidden relative w-40 mx-auto">
       <aside
-        className="flex flex-col transition-transform ease-out duration-500 w-full "
+        className="flex flex-row transition-transform ease-out duration-500  h-[245px]"
         style={{ transform: `translateX(-${current * 100}%)` }}
       >
         {slides}

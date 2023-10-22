@@ -1,8 +1,8 @@
 import "./style.css";
-
-const Loader = () => {
+//eslint-disable-next-line
+const Loader = ({ mt, ml }) => {
   return (
-    <div className="loader">
+    <div className="loader" style={{ marginTop: `${mt}`, marginLeft: `${ml}` }}>
       <div className="typing-indicator">
         <div className="typing-circle"></div>
         <div className="typing-circle"></div>

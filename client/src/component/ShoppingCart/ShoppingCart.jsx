@@ -92,30 +92,42 @@ const ShoppingCart = () => {
 
             <div>
               <p className="text-sm">{el.name}</p>
-              <div className="flex flex-row">
+
+              <div className="flex flex-row gap-2 justify-start mt-2 items-center">
                 <button
                   onClick={() => {
                     delItemFromCart(el.id);
                   }}
+                  className="bg-gray-200 rounded-full h-4 w-4 flex flex-row justify-center items-center font-semibold text-sm"
                 >
                   -
                 </button>
-                <div>{el.quantity}</div>
+                <p className="font-bold text-lg">{el.quantity}</p>
                 <button
                   onClick={() => {
                     addItemToCart(el.id);
                   }}
+                  className="bg-gray-200 rounded-full h-4 w-4 flex flex-row justify-center items-center font-semibold text-sm"
                 >
                   +
                 </button>
               </div>
             </div>
-            <div className="font-bold">${el.price * el.quantity}</div>
+            <p className="font-bold text-lg">{`${(
+              el.price * el.quantity
+            ).toLocaleString("es-CO", {
+              style: "currency",
+              currency: "COP",
+            })}`}</p>
           </div>
         ))}
       </div>
       <p className="w-[90%] h-auto mx-auto text-xl font-bold">
-        Total: {totalPrice.toFixed(2)}{" "}
+        Total:{" "}
+        {totalPrice.toLocaleString("es-CO", {
+          style: "currency",
+          currency: "COP",
+        })}
       </p>
       <Link
         to={`/orders/${index}`}

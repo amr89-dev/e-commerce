@@ -21,8 +21,8 @@ const ProductCard = ({ productData }) => {
     }).format(price);
 
   return (
-    <div className="m-4">
-      <figure className="relative w-full h-full">
+    <div className="m-4 hover:scale-105">
+      <figure className="relative w-full h-full shadow-xl rounded-lg ">
         <img
           src={images[0]}
           alt="headphones"

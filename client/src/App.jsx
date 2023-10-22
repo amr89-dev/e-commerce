@@ -85,7 +85,9 @@ function App() {
       <MainContextProvider>
         <NavBar />
         <AppRouter />
+
         <ProductDetail />
+
         <ShoppingCart />
       </MainContextProvider>
     </>

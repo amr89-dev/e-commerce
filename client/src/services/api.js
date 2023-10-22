@@ -32,7 +32,7 @@ export const createUser = async (data) => {
     return json;
   } catch (err) {
     console.log(err);
-    return { error: err };
+    throw err;
   }
 };
 
@@ -50,7 +50,7 @@ export const login = async (data) => {
     return json;
   } catch (err) {
     console.log(err);
-    return { error: err };
+    throw err;
   }
 };
 export const removeToken = async (token) => {

@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useProducts } from "./productContext";
 
 export const ShoppingCartContext = createContext();
@@ -47,6 +47,24 @@ const ShoppingCartProvider = ({ children }) => {
 
     setShoppingCartIsOpen(!shoppingCartIsOpen);
   };
+
+  const setLocalStorage = () => {
+    const items = localStorage.getItem("cartItems");
+    if (items !== null) {
+      localStorage.setItem("cartItems", JSON.stringify([...items, cartItems]));
+    }
+    localStorage.setItem("cartItems", JSON.stringify(items));
+  };
+
+  const checkLocalStorage = () => {
+    const items = JSON.parse(localStorage.getItem("cartItems")) || [];
+    setCartItems(items);
+  };
+
+  useEffect(() => {
+    setLocalStorage();
+  }, [cartItems]);
+
   const data = {
     cartItems,
     addItemToCart,
