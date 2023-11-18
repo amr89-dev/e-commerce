@@ -24,9 +24,21 @@ const checkAdminRole = (req, res, next) => {
 
 const checkRoles = (...roles) => {
   return (req, res, next) => {
+    console.log("-->", req.user);
     const user = req.user;
 
     if (roles.includes(user.role)) {
+      next();
+    } else {
+      next(boom.unauthorized());
+    }
+  };
+};
+const checkProfile = (...profiles) => {
+  return (req, res, next) => {
+    const user = req.user;
+
+    if (profiles.includes(user.profile)) {
       next();
     } else {
       next(boom.unauthorized());

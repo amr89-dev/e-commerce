@@ -7,6 +7,7 @@ const options = {
   secretOrKey: JWT_SECRET,
 };
 const JwtStrategy = new Strategy(options, async (payload, done) => {
+  console.log(payload);
   try {
     return done(null, payload);
   } catch (error) {

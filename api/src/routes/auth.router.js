@@ -14,6 +14,7 @@ const sign = (payload, isAccessToken) => {
     expiresIn: 3600,
   });
 };
+
 const generateAccessToken = (payload) => sign(payload, true);
 const generateRefreshToken = (payload) => sign(payload, false);
 
@@ -22,7 +23,6 @@ router.post(
   passport.authenticate("local", { session: false }),
   async (req, res, next) => {
     try {
-      console.log("estoy aqui");
       const user = req.user;
       const payload = {
         role: user.role,
