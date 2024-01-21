@@ -14,4 +14,4 @@ DB_PORT=5432
 DB_NAME=ecommerce
 ```
 
-Luego, en la carpeta "api" se debe correr el comando "npm install" para instalar las dependencias, y luego el comando "npm run nodemon" para levantar el servidor. En la carpeta "client" se debe correr el comando "npm install" para instalar las dependencias, y luego el comando "npm run dev" para levantar el cliente.
+Luego, en la carpeta "api" se debe correr el comando "npm install" para instalar las dependencias, y luego el comando "npm run dev" para levantar el servidor. En la carpeta "client" se debe correr el comando "npm install" para instalar las dependencias, y luego el comando "npm run dev" para levantar el cliente.
