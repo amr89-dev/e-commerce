@@ -1,11 +1,11 @@
 export const validationForm = (formData) => {
   let errors = {};
   if (!formData.firstName) {
-    errors.firstName = "El nombre es requerido";
+    errors.firstName = "Nombre es requerido";
     return errors;
   }
   if (!formData.lastName) {
-    errors.lastName = "El apellido es requerido";
+    errors.lastName = "Apellido es requerido";
     return errors;
   }
   if (!formData.email) {
