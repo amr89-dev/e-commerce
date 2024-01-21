@@ -1,5 +1,0 @@
-{"scripts":{
-  "start": "cd api && npm run nodemon && cd ../client && npm run dev"
-}
-
-}
